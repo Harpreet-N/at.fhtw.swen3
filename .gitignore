@@ -1,0 +1,6 @@
+#General
+.idea
+.github
+
+# IntelliJ
+/out
