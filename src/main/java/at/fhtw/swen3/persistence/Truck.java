@@ -1,25 +1,39 @@
 package at.fhtw.swen3.persistence;
 
+import java.net.URI;
 import java.util.Objects;
+import at.fhtw.swen3.persistence.GeoCoordinate;
+import at.fhtw.swen3.persistence.Hop;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.validation.annotation.Validated;
-
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * Truck
  */
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-10-14T09:35:30.423Z[GMT]")
 
 
-public class Truck extends Hop  {
+@JsonTypeName("truck")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-10-18T12:42:11.503113Z[Etc/UTC]")
+public class Truck extends Hop {
+
   @JsonProperty("regionGeoJson")
-  private String regionGeoJson = null;
+  private String regionGeoJson;
 
   @JsonProperty("numberPlate")
-  private String numberPlate = null;
+  private String numberPlate;
 
   public Truck regionGeoJson(String regionGeoJson) {
     this.regionGeoJson = regionGeoJson;
@@ -29,11 +43,10 @@ public class Truck extends Hop  {
   /**
    * GeoJSON (https://geojson.org/) of the area covered by the truck.
    * @return regionGeoJson
-   **/
-  @Schema(required = true, description = "GeoJSON (https://geojson.org/) of the area covered by the truck.")
-      @NotNull
-
-    public String getRegionGeoJson() {
+  */
+  @NotNull 
+  @Schema(name = "regionGeoJson", description = "GeoJSON (https://geojson.org/) of the area covered by the truck.", required = true)
+  public String getRegionGeoJson() {
     return regionGeoJson;
   }
 
@@ -49,11 +62,10 @@ public class Truck extends Hop  {
   /**
    * The truck's number plate.
    * @return numberPlate
-   **/
-  @Schema(required = true, description = "The truck's number plate.")
-      @NotNull
-
-    public String getNumberPlate() {
+  */
+  @NotNull 
+  @Schema(name = "numberPlate", description = "The truck's number plate.", required = true)
+  public String getNumberPlate() {
     return numberPlate;
   }
 
@@ -61,9 +73,38 @@ public class Truck extends Hop  {
     this.numberPlate = numberPlate;
   }
 
+  public Truck hopType(String hopType) {
+    super.setHopType(hopType);
+    return this;
+  }
+
+  public Truck code(String code) {
+    super.setCode(code);
+    return this;
+  }
+
+  public Truck description(String description) {
+    super.setDescription(description);
+    return this;
+  }
+
+  public Truck processingDelayMins(Integer processingDelayMins) {
+    super.setProcessingDelayMins(processingDelayMins);
+    return this;
+  }
+
+  public Truck locationName(String locationName) {
+    super.setLocationName(locationName);
+    return this;
+  }
+
+  public Truck locationCoordinates(GeoCoordinate locationCoordinates) {
+    super.setLocationCoordinates(locationCoordinates);
+    return this;
+  }
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -96,10 +137,11 @@ public class Truck extends Hop  {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
 }
+

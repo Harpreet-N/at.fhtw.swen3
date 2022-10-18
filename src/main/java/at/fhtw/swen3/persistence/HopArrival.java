@@ -1,29 +1,39 @@
 package at.fhtw.swen3.persistence;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
-import org.threeten.bp.OffsetDateTime;
-import org.springframework.validation.annotation.Validated;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.time.OffsetDateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * HopArrival
  */
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-10-14T09:35:30.423Z[GMT]")
 
+@JsonTypeName("hopArrival")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-10-18T12:42:11.503113Z[Etc/UTC]")
+public class HopArrival {
 
-public class HopArrival   {
   @JsonProperty("code")
-  private String code = null;
+  private String code;
 
   @JsonProperty("description")
-  private String description = null;
+  private String description;
 
   @JsonProperty("dateTime")
-  private OffsetDateTime dateTime = null;
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  private OffsetDateTime dateTime;
 
   public HopArrival code(String code) {
     this.code = code;
@@ -33,11 +43,10 @@ public class HopArrival   {
   /**
    * Unique CODE of the hop.
    * @return code
-   **/
-  @Schema(required = true, description = "Unique CODE of the hop.")
-      @NotNull
-
-  @Pattern(regexp="^[A-Z]{4}\\d{1,4}$")   public String getCode() {
+  */
+  @NotNull @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$") 
+  @Schema(name = "code", description = "Unique CODE of the hop.", required = true)
+  public String getCode() {
     return code;
   }
 
@@ -53,11 +62,10 @@ public class HopArrival   {
   /**
    * Description of the hop.
    * @return description
-   **/
-  @Schema(required = true, description = "Description of the hop.")
-      @NotNull
-
-    public String getDescription() {
+  */
+  @NotNull 
+  @Schema(name = "description", description = "Description of the hop.", required = true)
+  public String getDescription() {
     return description;
   }
 
@@ -73,12 +81,10 @@ public class HopArrival   {
   /**
    * The date/time the parcel arrived at the hop.
    * @return dateTime
-   **/
-  @Schema(required = true, description = "The date/time the parcel arrived at the hop.")
-      @NotNull
-
-    @Valid
-    public OffsetDateTime getDateTime() {
+  */
+  @NotNull @Valid 
+  @Schema(name = "dateTime", description = "The date/time the parcel arrived at the hop.", required = true)
+  public OffsetDateTime getDateTime() {
     return dateTime;
   }
 
@@ -86,9 +92,8 @@ public class HopArrival   {
     this.dateTime = dateTime;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -110,7 +115,6 @@ public class HopArrival   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HopArrival {\n");
-    
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    dateTime: ").append(toIndentedString(dateTime)).append("\n");
@@ -122,10 +126,11 @@ public class HopArrival   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
 }
+

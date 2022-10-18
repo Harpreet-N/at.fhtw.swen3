@@ -1,25 +1,33 @@
 package at.fhtw.swen3.persistence;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.validation.annotation.Validated;
-
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * GeoCoordinate
  */
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-10-14T09:35:30.423Z[GMT]")
 
+@JsonTypeName("geoCoordinate")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-10-18T12:42:11.503113Z[Etc/UTC]")
+public class GeoCoordinate {
 
-public class GeoCoordinate   {
   @JsonProperty("lat")
-  private Double lat = null;
+  private Double lat;
 
   @JsonProperty("lon")
-  private Double lon = null;
+  private Double lon;
 
   public GeoCoordinate lat(Double lat) {
     this.lat = lat;
@@ -29,11 +37,10 @@ public class GeoCoordinate   {
   /**
    * Latitude of the coordinate.
    * @return lat
-   **/
-  @Schema(required = true, description = "Latitude of the coordinate.")
-      @NotNull
-
-    public Double getLat() {
+  */
+  @NotNull 
+  @Schema(name = "lat", description = "Latitude of the coordinate.", required = true)
+  public Double getLat() {
     return lat;
   }
 
@@ -49,11 +56,10 @@ public class GeoCoordinate   {
   /**
    * Longitude of the coordinate.
    * @return lon
-   **/
-  @Schema(required = true, description = "Longitude of the coordinate.")
-      @NotNull
-
-    public Double getLon() {
+  */
+  @NotNull 
+  @Schema(name = "lon", description = "Longitude of the coordinate.", required = true)
+  public Double getLon() {
     return lon;
   }
 
@@ -61,9 +67,8 @@ public class GeoCoordinate   {
     this.lon = lon;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -84,7 +89,6 @@ public class GeoCoordinate   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GeoCoordinate {\n");
-    
     sb.append("    lat: ").append(toIndentedString(lat)).append("\n");
     sb.append("    lon: ").append(toIndentedString(lon)).append("\n");
     sb.append("}");
@@ -95,10 +99,11 @@ public class GeoCoordinate   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
 }
+

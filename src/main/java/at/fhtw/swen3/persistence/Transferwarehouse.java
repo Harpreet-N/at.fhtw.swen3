@@ -1,28 +1,42 @@
 package at.fhtw.swen3.persistence;
 
+import java.net.URI;
 import java.util.Objects;
+import at.fhtw.swen3.persistence.GeoCoordinate;
+import at.fhtw.swen3.persistence.Hop;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.validation.annotation.Validated;
-
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * Transferwarehouse
  */
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-10-14T09:35:30.423Z[GMT]")
 
 
-public class Transferwarehouse extends Hop  {
+@JsonTypeName("transferwarehouse")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-10-18T12:42:11.503113Z[Etc/UTC]")
+public class Transferwarehouse extends Hop {
+
   @JsonProperty("regionGeoJson")
-  private String regionGeoJson = null;
+  private String regionGeoJson;
 
   @JsonProperty("logisticsPartner")
-  private String logisticsPartner = null;
+  private String logisticsPartner;
 
   @JsonProperty("logisticsPartnerUrl")
-  private String logisticsPartnerUrl = null;
+  private String logisticsPartnerUrl;
 
   public Transferwarehouse regionGeoJson(String regionGeoJson) {
     this.regionGeoJson = regionGeoJson;
@@ -32,11 +46,10 @@ public class Transferwarehouse extends Hop  {
   /**
    * GeoJSON (https://geojson.org/) of the area covered by the logistics partner.
    * @return regionGeoJson
-   **/
-  @Schema(required = true, description = "GeoJSON (https://geojson.org/) of the area covered by the logistics partner.")
-      @NotNull
-
-    public String getRegionGeoJson() {
+  */
+  @NotNull 
+  @Schema(name = "regionGeoJson", description = "GeoJSON (https://geojson.org/) of the area covered by the logistics partner.", required = true)
+  public String getRegionGeoJson() {
     return regionGeoJson;
   }
 
@@ -52,11 +65,10 @@ public class Transferwarehouse extends Hop  {
   /**
    * Name of the logistics partner.
    * @return logisticsPartner
-   **/
-  @Schema(required = true, description = "Name of the logistics partner.")
-      @NotNull
-
-    public String getLogisticsPartner() {
+  */
+  @NotNull 
+  @Schema(name = "logisticsPartner", description = "Name of the logistics partner.", required = true)
+  public String getLogisticsPartner() {
     return logisticsPartner;
   }
 
@@ -72,11 +84,10 @@ public class Transferwarehouse extends Hop  {
   /**
    * BaseURL of the logistics partner's REST service.
    * @return logisticsPartnerUrl
-   **/
-  @Schema(required = true, description = "BaseURL of the logistics partner's REST service.")
-      @NotNull
-
-    public String getLogisticsPartnerUrl() {
+  */
+  @NotNull 
+  @Schema(name = "logisticsPartnerUrl", description = "BaseURL of the logistics partner's REST service.", required = true)
+  public String getLogisticsPartnerUrl() {
     return logisticsPartnerUrl;
   }
 
@@ -84,9 +95,38 @@ public class Transferwarehouse extends Hop  {
     this.logisticsPartnerUrl = logisticsPartnerUrl;
   }
 
+  public Transferwarehouse hopType(String hopType) {
+    super.setHopType(hopType);
+    return this;
+  }
+
+  public Transferwarehouse code(String code) {
+    super.setCode(code);
+    return this;
+  }
+
+  public Transferwarehouse description(String description) {
+    super.setDescription(description);
+    return this;
+  }
+
+  public Transferwarehouse processingDelayMins(Integer processingDelayMins) {
+    super.setProcessingDelayMins(processingDelayMins);
+    return this;
+  }
+
+  public Transferwarehouse locationName(String locationName) {
+    super.setLocationName(locationName);
+    return this;
+  }
+
+  public Transferwarehouse locationCoordinates(GeoCoordinate locationCoordinates) {
+    super.setLocationCoordinates(locationCoordinates);
+    return this;
+  }
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -121,10 +161,11 @@ public class Transferwarehouse extends Hop  {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
 }
+

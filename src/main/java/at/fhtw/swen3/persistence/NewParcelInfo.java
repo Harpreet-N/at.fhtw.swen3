@@ -1,22 +1,30 @@
 package at.fhtw.swen3.persistence;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.validation.annotation.Validated;
-
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * NewParcelInfo
  */
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-10-14T09:35:30.423Z[GMT]")
 
+@JsonTypeName("newParcelInfo")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-10-18T12:42:11.503113Z[Etc/UTC]")
+public class NewParcelInfo {
 
-public class NewParcelInfo   {
   @JsonProperty("trackingId")
-  private String trackingId = null;
+  private String trackingId;
 
   public NewParcelInfo trackingId(String trackingId) {
     this.trackingId = trackingId;
@@ -26,10 +34,10 @@ public class NewParcelInfo   {
   /**
    * The tracking ID of the parcel. 
    * @return trackingId
-   **/
-  @Schema(example = "PYJRB4HZ6", description = "The tracking ID of the parcel. ")
-  
-  @Pattern(regexp="^[A-Z0-9]{9}$")   public String getTrackingId() {
+  */
+  @Pattern(regexp = "^[A-Z0-9]{9}$") 
+  @Schema(name = "trackingId", example = "PYJRB4HZ6", description = "The tracking ID of the parcel. ", required = false)
+  public String getTrackingId() {
     return trackingId;
   }
 
@@ -37,9 +45,8 @@ public class NewParcelInfo   {
     this.trackingId = trackingId;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -59,7 +66,6 @@ public class NewParcelInfo   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class NewParcelInfo {\n");
-    
     sb.append("    trackingId: ").append(toIndentedString(trackingId)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -69,10 +75,11 @@ public class NewParcelInfo   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
 }
+

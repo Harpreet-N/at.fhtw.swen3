@@ -1,34 +1,42 @@
 package at.fhtw.swen3.persistence;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.validation.annotation.Validated;
-
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * Recipient
  */
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-10-14T09:35:30.423Z[GMT]")
 
+@JsonTypeName("recipient")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-10-18T12:42:11.503113Z[Etc/UTC]")
+public class Recipient {
 
-public class Recipient   {
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("street")
-  private String street = null;
+  private String street;
 
   @JsonProperty("postalCode")
-  private String postalCode = null;
+  private String postalCode;
 
   @JsonProperty("city")
-  private String city = null;
+  private String city;
 
   @JsonProperty("country")
-  private String country = null;
+  private String country;
 
   public Recipient name(String name) {
     this.name = name;
@@ -38,11 +46,10 @@ public class Recipient   {
   /**
    * Name of person or company.
    * @return name
-   **/
-  @Schema(required = true, description = "Name of person or company.")
-      @NotNull
-
-    public String getName() {
+  */
+  @NotNull 
+  @Schema(name = "name", description = "Name of person or company.", required = true)
+  public String getName() {
     return name;
   }
 
@@ -58,11 +65,10 @@ public class Recipient   {
   /**
    * Street
    * @return street
-   **/
-  @Schema(required = true, description = "Street")
-      @NotNull
-
-    public String getStreet() {
+  */
+  @NotNull 
+  @Schema(name = "street", description = "Street", required = true)
+  public String getStreet() {
     return street;
   }
 
@@ -78,11 +84,10 @@ public class Recipient   {
   /**
    * Postalcode
    * @return postalCode
-   **/
-  @Schema(required = true, description = "Postalcode")
-      @NotNull
-
-    public String getPostalCode() {
+  */
+  @NotNull 
+  @Schema(name = "postalCode", description = "Postalcode", required = true)
+  public String getPostalCode() {
     return postalCode;
   }
 
@@ -98,11 +103,10 @@ public class Recipient   {
   /**
    * City
    * @return city
-   **/
-  @Schema(required = true, description = "City")
-      @NotNull
-
-    public String getCity() {
+  */
+  @NotNull 
+  @Schema(name = "city", description = "City", required = true)
+  public String getCity() {
     return city;
   }
 
@@ -118,11 +122,10 @@ public class Recipient   {
   /**
    * Country
    * @return country
-   **/
-  @Schema(required = true, description = "Country")
-      @NotNull
-
-    public String getCountry() {
+  */
+  @NotNull 
+  @Schema(name = "country", description = "Country", required = true)
+  public String getCountry() {
     return country;
   }
 
@@ -130,9 +133,8 @@ public class Recipient   {
     this.country = country;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -156,7 +158,6 @@ public class Recipient   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Recipient {\n");
-    
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    street: ").append(toIndentedString(street)).append("\n");
     sb.append("    postalCode: ").append(toIndentedString(postalCode)).append("\n");
@@ -170,10 +171,11 @@ public class Recipient   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
 }
+

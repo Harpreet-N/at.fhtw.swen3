@@ -1,28 +1,37 @@
 package at.fhtw.swen3.persistence;
 
+import java.net.URI;
 import java.util.Objects;
+import at.fhtw.swen3.persistence.Recipient;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.validation.annotation.Validated;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * Parcel
  */
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-10-14T09:35:30.423Z[GMT]")
 
+@JsonTypeName("parcel")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-10-18T12:42:11.503113Z[Etc/UTC]")
+public class Parcel {
 
-public class Parcel   {
   @JsonProperty("weight")
-  private Float weight = null;
+  private Float weight;
 
   @JsonProperty("recipient")
-  private Recipient recipient = null;
+  private Recipient recipient;
 
   @JsonProperty("sender")
-  private Recipient sender = null;
+  private Recipient sender;
 
   public Parcel weight(Float weight) {
     this.weight = weight;
@@ -32,11 +41,10 @@ public class Parcel   {
   /**
    * Get weight
    * @return weight
-   **/
-  @Schema(required = true, description = "")
-      @NotNull
-
-    public Float getWeight() {
+  */
+  @NotNull 
+  @Schema(name = "weight", required = true)
+  public Float getWeight() {
     return weight;
   }
 
@@ -52,12 +60,10 @@ public class Parcel   {
   /**
    * Get recipient
    * @return recipient
-   **/
-  @Schema(required = true, description = "")
-      @NotNull
-
-    @Valid
-    public Recipient getRecipient() {
+  */
+  @NotNull @Valid 
+  @Schema(name = "recipient", required = true)
+  public Recipient getRecipient() {
     return recipient;
   }
 
@@ -73,12 +79,10 @@ public class Parcel   {
   /**
    * Get sender
    * @return sender
-   **/
-  @Schema(required = true, description = "")
-      @NotNull
-
-    @Valid
-    public Recipient getSender() {
+  */
+  @NotNull @Valid 
+  @Schema(name = "sender", required = true)
+  public Recipient getSender() {
     return sender;
   }
 
@@ -86,9 +90,8 @@ public class Parcel   {
     this.sender = sender;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -110,7 +113,6 @@ public class Parcel   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Parcel {\n");
-    
     sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
     sb.append("    recipient: ").append(toIndentedString(recipient)).append("\n");
     sb.append("    sender: ").append(toIndentedString(sender)).append("\n");
@@ -122,10 +124,11 @@ public class Parcel   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
 }
+

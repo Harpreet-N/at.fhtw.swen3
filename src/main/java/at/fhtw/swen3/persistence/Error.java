@@ -1,22 +1,30 @@
 package at.fhtw.swen3.persistence;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.validation.annotation.Validated;
-
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * Error
  */
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-10-14T09:35:30.423Z[GMT]")
 
+@JsonTypeName("error")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-10-18T12:42:11.503113Z[Etc/UTC]")
+public class Error {
 
-public class Error   {
   @JsonProperty("errorMessage")
-  private String errorMessage = null;
+  private String errorMessage;
 
   public Error errorMessage(String errorMessage) {
     this.errorMessage = errorMessage;
@@ -26,11 +34,10 @@ public class Error   {
   /**
    * The error message.
    * @return errorMessage
-   **/
-  @Schema(required = true, description = "The error message.")
-      @NotNull
-
-    public String getErrorMessage() {
+  */
+  @NotNull 
+  @Schema(name = "errorMessage", description = "The error message.", required = true)
+  public String getErrorMessage() {
     return errorMessage;
   }
 
@@ -38,9 +45,8 @@ public class Error   {
     this.errorMessage = errorMessage;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -60,7 +66,6 @@ public class Error   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Error {\n");
-    
     sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -70,10 +75,11 @@ public class Error   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
 }
+
