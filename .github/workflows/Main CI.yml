@@ -68,7 +68,7 @@ jobs:
         with:
           #Set artifact name
           name: artifact
-          path: .target/
+          path: target/
   #Deploy's job
       
       
