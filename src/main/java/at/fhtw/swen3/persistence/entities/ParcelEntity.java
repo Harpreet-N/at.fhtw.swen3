@@ -1,4 +1,4 @@
 package at.fhtw.swen3.persistence.entities;
 
-public class Parcel {
+public class ParcelEntity {
 }
