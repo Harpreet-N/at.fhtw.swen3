@@ -4,3 +4,6 @@
 
 # IntelliJ
 /out
+
+target
+target/

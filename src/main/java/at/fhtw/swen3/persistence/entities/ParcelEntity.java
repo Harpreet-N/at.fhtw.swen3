@@ -1,15 +1,16 @@
 package at.fhtw.swen3.persistence.entities;
 
-import at.fhtw.swen3.services.dto.HopArrival;
-import at.fhtw.swen3.services.dto.Recipient;
 import at.fhtw.swen3.services.dto.TrackingInformation;
-
-
-
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +28,11 @@ public class ParcelEntity {
     private Float weight;
 
     @Column
+    @ManyToOne
     private RecipientEntity recipient;
 
     @Column
+    @ManyToOne
     private RecipientEntity sender;
 
     @Column
@@ -39,9 +42,11 @@ public class ParcelEntity {
     private TrackingInformation.StateEnum state;
 
     @Column
+    @OneToMany
     private List<HopArrivalEntity> visitedHops = new ArrayList<>();
 
     @Column
+    @OneToMany
     private List<HopArrivalEntity> futureHops = new ArrayList<>();
 
 }
