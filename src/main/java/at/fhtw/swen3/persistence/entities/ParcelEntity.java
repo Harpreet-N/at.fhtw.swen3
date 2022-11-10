@@ -27,9 +27,11 @@ public class ParcelEntity {
     private Float weight;
 
     @Column
+    @ManyToOne
     private RecipientEntity recipient;
 
     @Column
+    @ManyToOne
     private RecipientEntity sender;
 
     @Column
@@ -39,9 +41,11 @@ public class ParcelEntity {
     private TrackingInformation.StateEnum state;
 
     @Column
+    @OneToMany
     private List<HopArrivalEntity> visitedHops = new ArrayList<>();
 
     @Column
+    @OneToMany
     private List<HopArrivalEntity> futureHops = new ArrayList<>();
 
 }
