@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class WarehouseEntity {
     private Integer level;
 
     @Column
+    @NotNull
     @OneToMany
     private List<WarehouseNextHopsEntity> nextHops = new ArrayList<>();
 }

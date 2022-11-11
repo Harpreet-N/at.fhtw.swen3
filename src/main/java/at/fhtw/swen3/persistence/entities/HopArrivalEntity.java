@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.time.OffsetDateTime;
 
 @Getter
@@ -19,6 +20,7 @@ public class HopArrivalEntity {
     private int id;
 
     @Column
+    @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$")
     private String code;
     @Column
     private String description;

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -33,6 +34,7 @@ public class HopEntity {
     private String locationName;
 
     @Column
+    @NotNull
     @ManyToOne
-    private GeoCoordinate locationCoordinates;
+    private GeoCoordinateEntity locationCoordinates;
 }
