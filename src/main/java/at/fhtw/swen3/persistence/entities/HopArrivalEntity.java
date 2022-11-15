@@ -13,6 +13,7 @@ public class HopArrivalEntity {
     @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$")
     private String code;
 
+    @Pattern(regexp = "[A-ZÄÜÖa-zöäüß0-9\\s\\-]+")
     private String description;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
