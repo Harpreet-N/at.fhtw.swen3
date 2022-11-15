@@ -13,11 +13,11 @@ public class RecipientEntityValidator implements ConstraintValidator<RecipientEn
 
     @Override
     public boolean isValid(RecipientEntity recipientEntity, ConstraintValidatorContext constraintValidatorContext) {
-        if (recipientEntity.getCity().equals("Österreich") || recipientEntity.getCity().equals("Austria")) {
+        if (recipientEntity.getCountry().equals("Österreich") || recipientEntity.getCountry().equals("Austria")) {
             if (!recipientEntity.getPostalCode().matches("A-[0-9]{4}")) {
                 return false;
             }
-            if (!recipientEntity.getStreet().matches("^[A-Z].[a-zäöüß]+\\s[0-9a-z\\/]+")) {
+            if (!recipientEntity.getStreet().matches("^[A-Za-zäöüß]+\\s[0-9a-z\\/]+")) {
                 return false;
             }
             if (!recipientEntity.getCity().matches("^[A-ZÄÜÖß].[A-ZÄÜÖa-zöäüß\\s\\-]+")) {
