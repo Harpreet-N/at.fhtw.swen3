@@ -4,3 +4,8 @@
 
 # IntelliJ
 /out
+
+#Maven
+target
+target/
+/target
