@@ -1,6 +1,8 @@
 package at.fhtw.swen3.persistence.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,6 +11,8 @@ import java.time.OffsetDateTime;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class HopArrivalEntity {
     @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$")
     private String code;
