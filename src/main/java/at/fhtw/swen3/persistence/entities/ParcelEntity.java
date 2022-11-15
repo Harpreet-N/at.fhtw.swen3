@@ -26,7 +26,6 @@ public class ParcelEntity {
     @Pattern(regexp = "^[A-Z0-9]{9}$")
     private String trackingId;
 
-    @NotNull
     private TrackingInformation.StateEnum state;
 
     @NotNull
