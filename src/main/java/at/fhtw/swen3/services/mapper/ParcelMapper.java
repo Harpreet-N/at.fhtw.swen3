@@ -6,9 +6,12 @@ import at.fhtw.swen3.services.dto.Parcel;
 import at.fhtw.swen3.services.dto.TrackingInformation;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(uses = {HopArrivalMapper.class, RecipientMapper.class})
 public interface ParcelMapper {
+    ParcelMapper INSTANCE = Mappers.getMapper(ParcelMapper.class);
+
     @Mapping(source = "parcel.weight", target = "weight")
     @Mapping(source = "parcel.recipient", target = "recipient")
     @Mapping(source = "parcel.sender", target = "sender")
