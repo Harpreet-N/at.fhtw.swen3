@@ -19,7 +19,7 @@ public class ErrorMapperTest {
 
     @Test
     void mapErrorEntityToDTO() {
-        ErrorEntity errorEntity = new ErrorEntity("This is an error");
+        ErrorEntity errorEntity = new ErrorEntity(1,"This is an error");
 
         Error errorDTO = ErrorMapper.INSTANCE.entityToDto(errorEntity);
 

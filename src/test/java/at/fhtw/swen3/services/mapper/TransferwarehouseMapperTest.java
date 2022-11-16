@@ -23,7 +23,7 @@ public class TransferwarehouseMapperTest {
 
     @Test
     void mapTransferwarehouseEntityToDTO() {
-        TransferwarehouseEntity transferwarehouseEntity = new TransferwarehouseEntity("abc", "abc", "abc");
+        TransferwarehouseEntity transferwarehouseEntity = new TransferwarehouseEntity(1,"abc", "abc", "abc");
 
         Transferwarehouse transferwarehouseDTO = TransferwarehouseMapper.INSTANCE.entityToDto(transferwarehouseEntity);
 

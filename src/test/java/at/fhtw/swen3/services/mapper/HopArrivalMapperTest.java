@@ -29,7 +29,7 @@ public class HopArrivalMapperTest {
     void mapHopArrivalEntityToDTO() {
         OffsetDateTime offsetDateTime = OffsetDateTime.now();
 
-        HopArrivalEntity hopArrivalEntity = new HopArrivalEntity("A-1120", "Warehouse-12", offsetDateTime, null);
+        HopArrivalEntity hopArrivalEntity = new HopArrivalEntity(1,"A-1120", "Warehouse-12", offsetDateTime, null);
 
         HopArrival hopArrivalDTO = HopArrivalMapper.INSTANCE.entityToDto(hopArrivalEntity);
 

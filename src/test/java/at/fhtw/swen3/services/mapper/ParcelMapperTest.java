@@ -60,7 +60,7 @@ public class ParcelMapperTest {
 
     @Test
     void mapParcelEntityToParcelDTO() {
-        ParcelEntity parcelEntity = new ParcelEntity(78.4f, new RecipientEntity(), new RecipientEntity(), "abc", TrackingInformation.StateEnum.PICKUP, new ArrayList<HopArrivalEntity>(), new ArrayList<HopArrivalEntity>());
+        ParcelEntity parcelEntity = new ParcelEntity(1,78.4f, new RecipientEntity(), new RecipientEntity(), "abc", TrackingInformation.StateEnum.PICKUP, new ArrayList<HopArrivalEntity>(), new ArrayList<HopArrivalEntity>());
 
         Parcel parcelDTO = ParcelMapper.INSTANCE.entityToParcelDto(parcelEntity);
 
@@ -79,7 +79,7 @@ public class ParcelMapperTest {
 
     @Test
     void mapParcelEntityToNewParcelInfoDTO() {
-        ParcelEntity parcelEntity = new ParcelEntity(78.4f, new RecipientEntity(), new RecipientEntity(), "abc", TrackingInformation.StateEnum.PICKUP, new ArrayList<HopArrivalEntity>(), new ArrayList<HopArrivalEntity>());
+        ParcelEntity parcelEntity = new ParcelEntity(3,78.4f, new RecipientEntity(), new RecipientEntity(), "abc", TrackingInformation.StateEnum.PICKUP, new ArrayList<HopArrivalEntity>(), new ArrayList<HopArrivalEntity>());
 
         NewParcelInfo newParcelInfoDTO = ParcelMapper.INSTANCE.entityToNewParcelInfoDto(parcelEntity);
 
@@ -88,7 +88,7 @@ public class ParcelMapperTest {
 
     @Test
     void mapParcelEntityToTrackingInformationDTO() {
-        ParcelEntity parcelEntity = new ParcelEntity(78.4f, new RecipientEntity(), new RecipientEntity(), "abc", TrackingInformation.StateEnum.PICKUP, new ArrayList<HopArrivalEntity>(), new ArrayList<HopArrivalEntity>());
+        ParcelEntity parcelEntity = new ParcelEntity(2,78.4f, new RecipientEntity(), new RecipientEntity(), "abc", TrackingInformation.StateEnum.PICKUP, new ArrayList<HopArrivalEntity>(), new ArrayList<HopArrivalEntity>());
 
         TrackingInformation trackingInformationDTO = ParcelMapper.INSTANCE.entityToTrackingInformationDto(parcelEntity);
 

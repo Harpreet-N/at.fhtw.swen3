@@ -27,7 +27,7 @@ public class RecipientMapperTest {
 
     @Test
     void mapRecipientEntityToDTO() {
-        RecipientEntity recipientEntity = new RecipientEntity("Tim", "Vivaldigasse 5", "A-1234", "Wien", "Austria");
+        RecipientEntity recipientEntity = new RecipientEntity(1,"Tim", "Vivaldigasse 5", "A-1234", "Wien", "Austria");
 
         Recipient recipientDTO = RecipientMapper.INSTANCE.entityToDto(recipientEntity);
 

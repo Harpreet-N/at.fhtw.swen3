@@ -21,7 +21,7 @@ public class TruckMapperTest {
 
     @Test
     void mapTruckEntityToDTO() {
-        TruckEntity truckEntity = new TruckEntity("abc", "W-12345");
+        TruckEntity truckEntity = new TruckEntity(1,"abc", "W-12345");
 
         Truck truckDTO = TruckMapper.INSTANCE.entityToDto(truckEntity);
 

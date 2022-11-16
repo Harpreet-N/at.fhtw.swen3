@@ -21,7 +21,7 @@ public class GeoCoordinateMapperTest {
 
     @Test
     void mapGeoCoordinateEntityToDTO() {
-        GeoCoordinateEntity geoCoordinateEntity = new GeoCoordinateEntity(5.0, 10.3);
+        GeoCoordinateEntity geoCoordinateEntity = new GeoCoordinateEntity(1,5.0, 10.3);
 
         GeoCoordinate geoCoordinateDTO = GeoCoordinateMapper.INSTANCE.entityToDto(geoCoordinateEntity);
 

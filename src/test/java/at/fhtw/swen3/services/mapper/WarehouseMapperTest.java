@@ -24,7 +24,7 @@ public class WarehouseMapperTest {
 
     @Test
     void mapWarehouseEntityToDTO() {
-        WarehouseEntity warehouseEntity = new WarehouseEntity(27, new ArrayList<>());
+        WarehouseEntity warehouseEntity = new WarehouseEntity(1,27, new ArrayList<>());
 
         Warehouse warehouseDTO = WarehouseMapper.INSTANCE.entityToDto(warehouseEntity);
 
