@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -19,6 +20,7 @@ import java.util.List;
 public class ParcelEntity {
 
     @Min(value = 0)
+    @DecimalMin(value = "0")
     private Float weight;
 
     @NotNull
@@ -28,6 +30,8 @@ public class ParcelEntity {
     private RecipientEntity sender;
 
     @Pattern(regexp = "^[A-Z0-9]{9}$")
+    @NotNull
+
     private String trackingId;
 
     private TrackingInformation.StateEnum state;

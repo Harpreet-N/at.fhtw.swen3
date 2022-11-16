@@ -15,6 +15,8 @@ import javax.validation.constraints.Pattern;
 public class HopEntity {
     private String hopType;
 
+    @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$")
+    @NotNull
     private String code;
 
     @Pattern(regexp = "[A-ZÄÜÖa-zöäüß0-9\\s\\-]+")
