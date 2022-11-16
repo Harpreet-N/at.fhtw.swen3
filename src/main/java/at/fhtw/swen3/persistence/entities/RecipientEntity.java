@@ -18,13 +18,13 @@ public class RecipientEntity {
     @Pattern(regexp = "")
     private String name;
 
-    @Pattern(regexp = "")
+    @Pattern(regexp = "^[A-Za-zäöüß]+\\s[0-9a-z\\/]+")
     private String street;
 
-    @Pattern(regexp = "^[aA]{1}-[0-9]{4}")
+    @Pattern(regexp = "A-[0-9]{4}")
     private String postalCode;
 
-    @Pattern(regexp = "[A-Za-z]")
+    @Pattern(regexp = "^[A-ZÄÜÖß].[A-ZÄÜÖa-zöäüß\\s\\-]+")
     private String city;
 
     @Pattern(regexp = "^.*(Österreich|Austria).*$")
