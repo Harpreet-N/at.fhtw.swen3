@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+import java.awt.*;
 
 @Getter
 @Setter
@@ -17,9 +18,10 @@ public class GeoCoordinateEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     private int id;
 
-    @Column
-    private Double lat;
 
-    @Column
-    private Double lon;
+    @Column(columnDefinition="Point")
+    private Point lat;
+
+    @Column(columnDefinition="Point")
+    private Point  lon;
 }

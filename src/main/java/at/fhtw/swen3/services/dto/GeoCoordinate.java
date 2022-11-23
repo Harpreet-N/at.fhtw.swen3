@@ -1,5 +1,6 @@
 package at.fhtw.swen3.services.dto;
 
+import java.awt.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -19,12 +20,12 @@ import javax.annotation.Generated;
 public class GeoCoordinate {
 
   @JsonProperty("lat")
-  private Double lat;
+  private Point lat;
 
   @JsonProperty("lon")
-  private Double lon;
+  private Point lon;
 
-  public GeoCoordinate lat(Double lat) {
+  public GeoCoordinate lat(Point lat) {
     this.lat = lat;
     return this;
   }
@@ -35,15 +36,15 @@ public class GeoCoordinate {
   */
   @NotNull 
   @Schema(name = "lat", description = "Latitude of the coordinate.", required = true)
-  public Double getLat() {
+  public Point getLat() {
     return lat;
   }
 
-  public void setLat(Double lat) {
+  public void setLat(Point lat) {
     this.lat = lat;
   }
 
-  public GeoCoordinate lon(Double lon) {
+  public GeoCoordinate lon(Point lon) {
     this.lon = lon;
     return this;
   }
@@ -54,11 +55,11 @@ public class GeoCoordinate {
   */
   @NotNull 
   @Schema(name = "lon", description = "Longitude of the coordinate.", required = true)
-  public Double getLon() {
+  public Point getLon() {
     return lon;
   }
 
-  public void setLon(Double lon) {
+  public void setLon(Point lon) {
     this.lon = lon;
   }
 
