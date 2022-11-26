@@ -16,13 +16,11 @@ class RecipientRepositoryTest {
 
     @Autowired
     RecipientRepository recipientRepository;
-/*
+
     @Test
     void test(){
 
     }
-
- */
 
 /*
     @Test

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface WarehouselRepository extends JpaRepository<WarehouseEntity, Integer>  {
+public interface WarehouseRepository extends JpaRepository<WarehouseEntity, Integer>  {
 
     @Override
     List<WarehouseEntity> findAll();
