@@ -1,14 +1,12 @@
 package at.fhtw.swen3.persistence.entities;
 
 import at.fhtw.swen3.services.validation.RecipientEntityConstraint;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor

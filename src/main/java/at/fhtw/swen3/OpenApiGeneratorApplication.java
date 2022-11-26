@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"org.openapitools", "at.fhtw.swen3.services" , "at.fhtw.swen3.configuration"})
+@ComponentScan(basePackages = {"org.openapitools", "at.fhtw.swen3", "at.fhtw.swen3.services" , "at.fhtw.swen3.configuration"})
 public class OpenApiGeneratorApplication {
 
     public static void main(String[] args) {
