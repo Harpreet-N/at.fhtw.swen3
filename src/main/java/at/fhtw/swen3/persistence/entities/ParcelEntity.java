@@ -32,10 +32,12 @@ public class ParcelEntity {
 
     @NotNull
     @OneToOne
+    @JoinColumn(name="fk_recipient")
     private RecipientEntity recipient;
 
     @NotNull
     @OneToOne
+    @JoinColumn(name="fk_sender")
     private RecipientEntity sender;
 
     @Pattern(regexp = "^[A-Z0-9]{9}$")

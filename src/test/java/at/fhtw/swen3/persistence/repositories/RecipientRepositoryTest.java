@@ -16,13 +16,15 @@ class RecipientRepositoryTest {
 
     @Autowired
     RecipientRepository recipientRepository;
-    /*
+/*
     @Test
     void test(){
 
     }
 
+ */
 
+/*
     @Test
     public void findByIdTest() {
         RecipientEntity recipientEntity = RecipientEntity.builder().id(1).city("Wien").country("Austria").name("Time").postalCode("a-1234").street("Vivalligasse t").build();

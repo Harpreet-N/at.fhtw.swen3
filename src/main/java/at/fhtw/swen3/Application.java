@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"org.openapitools", "at.fhtw.swen3", "at.fhtw.swen3.services" , "at.fhtw.swen3.configuration"})
-public class OpenApiGeneratorApplication {
+@ComponentScan(basePackages = {"at.fhtw.swen3.persistence", "at.fhtw.swen3.controller","at.fhtw.swen3.services" , "at.fhtw.swen3.configuration", "at.fhtw.swen3.persistence.repositories"})
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(OpenApiGeneratorApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
     @Bean
