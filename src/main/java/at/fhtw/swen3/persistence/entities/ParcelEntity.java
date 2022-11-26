@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -16,26 +18,40 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity(name = "parcel")
 public class ParcelEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
+    private int id;
+
     @Min(value = 0)
+    @DecimalMin(value = "0")
+    @Column
     private Float weight;
 
     @NotNull
+    @OneToOne
     private RecipientEntity recipient;
 
     @NotNull
+    @OneToOne
     private RecipientEntity sender;
 
     @Pattern(regexp = "^[A-Z0-9]{9}$")
+    @NotNull
+    @Column
     private String trackingId;
 
+    @Column
     private TrackingInformation.StateEnum state;
 
     @NotNull
+    @OneToMany
     private List<HopArrivalEntity> visitedHops = new ArrayList<>();
 
     @NotNull
+    @OneToMany
     private List<HopArrivalEntity> futureHops = new ArrayList<>();
 
 }

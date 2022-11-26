@@ -16,39 +16,39 @@ public class RecipientEntityValidatorTest {
 
     @Test
     void isValidWithCountryRequirement() {
-        RecipientEntity recipientEntityWithAustria = new RecipientEntity("TestEntity", "Vivaldigasse 5", "A-1234", "Wien", "Austria");
-        RecipientEntity recipientEntityWithOesterreich = new RecipientEntity("TestEntity", "Vivaldigasse 5", "A-1234", "Wien", "Österreich");
+        RecipientEntity recipientEntityWithAustria = new RecipientEntity(1, "TestEntity", "Vivaldigasse 5", "A-1234", "Wien", "Austria");
+        RecipientEntity recipientEntityWithOesterreich = new RecipientEntity(1, "TestEntity", "Vivaldigasse 5", "A-1234", "Wien", "Österreich");
         assertTrue(recipientEntityValidator.isValid(recipientEntityWithAustria, constraintValidatorContext));
         assertTrue(recipientEntityValidator.isValid(recipientEntityWithOesterreich, constraintValidatorContext));
     }
 
     @Test
     void wrongStreetWithCountryRequirement() {
-        RecipientEntity recipientEntityWithAustria = new RecipientEntity("TestEntity", "5 Vivaldigasse 5", "A-1234", "Wien", "Austria");
-        RecipientEntity recipientEntityWithOesterreich = new RecipientEntity("TestEntity", "5 Vivaldigasse 5", "A-1234", "Wien", "Österreich");
+        RecipientEntity recipientEntityWithAustria = new RecipientEntity(1, "TestEntity", "5 Vivaldigasse 5", "A-1234", "Wien", "Austria");
+        RecipientEntity recipientEntityWithOesterreich = new RecipientEntity(1, "TestEntity", "5 Vivaldigasse 5", "A-1234", "Wien", "Österreich");
         assertFalse(recipientEntityValidator.isValid(recipientEntityWithAustria, constraintValidatorContext));
         assertFalse(recipientEntityValidator.isValid(recipientEntityWithOesterreich, constraintValidatorContext));
     }
 
     @Test
     void wrongPostalCodeWithCountryRequirement() {
-        RecipientEntity recipientEntityWithAustria = new RecipientEntity("TestEntity", "Vivaldigasse 5", "B-1234", "Wien", "Austria");
-        RecipientEntity recipientEntityWithOesterreich = new RecipientEntity("TestEntity", "Vivaldigasse 5", "B-1234", "Wien", "Österreich");
+        RecipientEntity recipientEntityWithAustria = new RecipientEntity(1, "TestEntity", "Vivaldigasse 5", "B-1234", "Wien", "Austria");
+        RecipientEntity recipientEntityWithOesterreich = new RecipientEntity(1, "TestEntity", "Vivaldigasse 5", "B-1234", "Wien", "Österreich");
         assertFalse(recipientEntityValidator.isValid(recipientEntityWithAustria, constraintValidatorContext));
         assertFalse(recipientEntityValidator.isValid(recipientEntityWithOesterreich, constraintValidatorContext));
     }
 
     @Test
     void wrongCityWithCountryRequirement() {
-        RecipientEntity recipientEntityWithAustria = new RecipientEntity("TestEntity", "Vivaldigasse 5", "A-1234", "wien", "Austria");
-        RecipientEntity recipientEntityWithOesterreich = new RecipientEntity("TestEntity", "Vivaldigasse 5", "A-1234", "wien", "Österreich");
+        RecipientEntity recipientEntityWithAustria = new RecipientEntity(1, "TestEntity", "Vivaldigasse 5", "A-1234", "wien", "Austria");
+        RecipientEntity recipientEntityWithOesterreich = new RecipientEntity(1, "TestEntity", "Vivaldigasse 5", "A-1234", "wien", "Österreich");
         assertFalse(recipientEntityValidator.isValid(recipientEntityWithAustria, constraintValidatorContext));
         assertFalse(recipientEntityValidator.isValid(recipientEntityWithOesterreich, constraintValidatorContext));
     }
 
     @Test
     void isValidWithoutCountryRequirement() {
-        RecipientEntity recipientEntity = new RecipientEntity("TestEntity", "5 a-a", "B-1234", "121 Wien", "Spain");
+        RecipientEntity recipientEntity = new RecipientEntity(1, "TestEntity", "5 a-a", "B-1234", "121 Wien", "Spain");
         assertTrue(recipientEntityValidator.isValid(recipientEntity, constraintValidatorContext));
     }
 
