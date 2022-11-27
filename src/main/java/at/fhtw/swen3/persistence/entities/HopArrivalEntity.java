@@ -41,6 +41,6 @@ public class HopArrivalEntity {
     @NotNull
     @OneToMany
     @JoinColumn(name="fk_parcelEntries")
-    private List<ParcelEntity> parcelEntities = new ArrayList<>();
+    private List<ParcelEntity> parcel = new ArrayList<>();
 
 }
