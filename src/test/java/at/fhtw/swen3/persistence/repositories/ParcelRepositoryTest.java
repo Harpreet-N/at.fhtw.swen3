@@ -1,6 +1,6 @@
 package at.fhtw.swen3.persistence.repositories;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
@@ -8,6 +8,11 @@ import org.springframework.test.context.TestPropertySource;
 @TestPropertySource("/application.properties")
 public class ParcelRepositoryTest {
 
-    @Autowired
-    ParcelRepository parcelRepository;
+//    @Autowired
+//    ParcelRepository parcelRepository;
+
+    @Test
+    void test() {
+
+    }
 }
