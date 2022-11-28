@@ -8,18 +8,4 @@ import java.util.List;
 @Repository
 public interface ParcelRepository extends JpaRepository<ParcelEntity, Integer>  {
 
-    @Override
-    List<ParcelEntity> findAll();
-
-    @Override
-    List<ParcelEntity> findAllById(Iterable<Integer> integers);
-
-    @Override
-    void flush();
-
-    @Override
-    <S extends ParcelEntity> S saveAndFlush(S entity);
-
-    @Override
-    void deleteAllByIdInBatch(Iterable<Integer> integers);
 }

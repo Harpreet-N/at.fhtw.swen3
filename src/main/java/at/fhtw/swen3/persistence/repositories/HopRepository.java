@@ -4,22 +4,8 @@ import at.fhtw.swen3.persistence.entities.HopEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+
 @Repository
 public interface HopRepository extends JpaRepository<HopEntity, Integer>  {
 
-    @Override
-    List<HopEntity> findAll();
-
-    @Override
-    List<HopEntity> findAllById(Iterable<Integer> integers);
-
-    @Override
-    void flush();
-
-    @Override
-    <S extends HopEntity> S saveAndFlush(S entity);
-
-    @Override
-    void deleteAllByIdInBatch(Iterable<Integer> integers);
 }
