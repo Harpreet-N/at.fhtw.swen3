@@ -1,10 +1,7 @@
 package at.fhtw.swen3.persistence.entities;
 
 import at.fhtw.swen3.services.dto.TrackingInformation;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
@@ -16,8 +13,11 @@ import java.util.List;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 @Entity
 public class ParcelEntity  implements BaseEntity{
 
@@ -50,10 +50,14 @@ public class ParcelEntity  implements BaseEntity{
 
     @NotNull
     @OneToMany
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<HopArrivalEntity> visitedHops = new ArrayList<>();
 
     @NotNull
     @OneToMany
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<HopArrivalEntity> futureHops = new ArrayList<>();
 
 }

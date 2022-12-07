@@ -1,9 +1,6 @@
 package at.fhtw.swen3.persistence.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,8 +12,11 @@ import java.util.List;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 @Entity
 public class HopArrivalEntity  implements BaseEntity{
 
@@ -41,6 +41,8 @@ public class HopArrivalEntity  implements BaseEntity{
     @NotNull
     @OneToMany
     @JoinColumn(name="fk_parcelEntries")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<ParcelEntity> parcel = new ArrayList<>();
 
 }

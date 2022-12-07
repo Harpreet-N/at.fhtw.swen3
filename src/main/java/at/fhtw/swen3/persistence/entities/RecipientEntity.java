@@ -12,6 +12,8 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 @AllArgsConstructor
 @RecipientEntityConstraint
+@ToString
+@EqualsAndHashCode
 @Entity
 public class RecipientEntity  implements BaseEntity{
 
