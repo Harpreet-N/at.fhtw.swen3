@@ -8,13 +8,12 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@RequiredArgsConstructor
 public class WarehouseServiceImpl implements WarehouseService {
 
     private final WarehouseRepository recipientRepository;
 
-//    @Autowired
-//    public WarehouseServiceImpl(WarehouseRepository recipientRepository) {
-//        this.recipientRepository = recipientRepository;
-//    }
+    @Autowired
+    public WarehouseServiceImpl(WarehouseRepository recipientRepository) {
+        this.recipientRepository = recipientRepository;
+    }
 }
