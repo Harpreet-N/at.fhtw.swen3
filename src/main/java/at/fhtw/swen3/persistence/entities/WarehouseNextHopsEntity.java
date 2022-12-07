@@ -12,7 +12,8 @@ import javax.validation.constraints.NotNull;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "warehouse_next_hops")
+@Entity
+@Table(name = "warehouse_next_hops")
 public class WarehouseNextHopsEntity {
 
     @Id
