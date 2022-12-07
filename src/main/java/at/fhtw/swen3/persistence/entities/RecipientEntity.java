@@ -12,8 +12,8 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 @AllArgsConstructor
 @RecipientEntityConstraint
-@Entity(name = "recipient")
-public class RecipientEntity {
+@Entity
+public class RecipientEntity  implements BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")

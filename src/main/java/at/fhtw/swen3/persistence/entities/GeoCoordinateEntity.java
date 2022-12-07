@@ -11,8 +11,8 @@ import java.awt.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "geo_coordinate")
-public class GeoCoordinateEntity {
+@Entity
+public class GeoCoordinateEntity  implements BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
