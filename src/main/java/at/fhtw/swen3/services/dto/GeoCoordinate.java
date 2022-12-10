@@ -1,15 +1,12 @@
 package at.fhtw.swen3.services.dto;
 
-import java.awt.*;
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-
-import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-
 import javax.annotation.Generated;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * GeoCoordinate
@@ -20,12 +17,12 @@ import javax.annotation.Generated;
 public class GeoCoordinate {
 
   @JsonProperty("lat")
-  private Point lat;
+  private Double lat;
 
   @JsonProperty("lon")
-  private Point lon;
+  private Double lon;
 
-  public GeoCoordinate lat(Point lat) {
+  public GeoCoordinate lat(Double lat) {
     this.lat = lat;
     return this;
   }
@@ -36,15 +33,15 @@ public class GeoCoordinate {
   */
   @NotNull 
   @Schema(name = "lat", description = "Latitude of the coordinate.", required = true)
-  public Point getLat() {
+  public Double getLat() {
     return lat;
   }
 
-  public void setLat(Point lat) {
+  public void setLat(Double lat) {
     this.lat = lat;
   }
 
-  public GeoCoordinate lon(Point lon) {
+  public GeoCoordinate lon(Double lon) {
     this.lon = lon;
     return this;
   }
@@ -55,11 +52,11 @@ public class GeoCoordinate {
   */
   @NotNull 
   @Schema(name = "lon", description = "Longitude of the coordinate.", required = true)
-  public Point getLon() {
+  public Double getLon() {
     return lon;
   }
 
-  public void setLon(Point lon) {
+  public void setLon(Double lon) {
     this.lon = lon;
   }
 

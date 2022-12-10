@@ -1,27 +1,27 @@
 package at.fhtw.swen3.persistence.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
-import java.awt.*;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "geo_coordinate")
-public class GeoCoordinateEntity {
+@ToString
+@EqualsAndHashCode
+@Entity
+public class GeoCoordinateEntity  implements BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     private int id;
 
 
-    @Column(columnDefinition="Point")
-    private Point lat;
+    @Column
+    private Double lat;
 
-    @Column(columnDefinition="Point")
-    private Point  lon;
+    @Column
+    private Double  lon;
 }

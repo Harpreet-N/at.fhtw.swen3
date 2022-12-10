@@ -1,18 +1,18 @@
 package at.fhtw.swen3.persistence.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "error")
-public class ErrorEntity {
+@ToString
+@EqualsAndHashCode
+@Entity
+public class ErrorEntity implements BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     private int id;
