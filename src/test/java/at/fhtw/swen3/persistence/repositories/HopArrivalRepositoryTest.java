@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 @SpringBootTest
 @TestPropertySource("/application.properties")
-public class HopArrivalRepositoryTest {
+class HopArrivalRepositoryTest {
     private final HopArrivalRepository hopArrivalRepository;
     private final BaseRepositoryTest baseRepositoryTest;
     @Autowired
@@ -28,33 +28,33 @@ public class HopArrivalRepositoryTest {
     }
 
     @Test
-    public void testSave(){
+    void testSave(){
         OffsetDateTime offsetDateTime = OffsetDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         HopArrivalEntity hopArrivalEntity = HopArrivalEntity.builder().code("AAAA1111").description("abc").dateTime(offsetDateTime).parcel(new ArrayList<>()).build();
         baseRepositoryTest.testSave(hopArrivalEntity, hopArrivalRepository);
     }
 
     @Test
-    public void testFindById() {
+    void testFindById() {
         OffsetDateTime offsetDateTime = OffsetDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         HopArrivalEntity hopArrivalEntity = HopArrivalEntity.builder().code("AAAA1111").description("abc").dateTime(offsetDateTime).parcel(new ArrayList<>()).build();
         baseRepositoryTest.testFindById(hopArrivalEntity, hopArrivalRepository);
     }
     @Test
-    public void testDelete() {
+    void testDelete() {
         OffsetDateTime offsetDateTime = OffsetDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         HopArrivalEntity hopArrivalEntity = HopArrivalEntity.builder().code("AAAA1111").description("abc").dateTime(offsetDateTime).parcel(new ArrayList<>()).build();
         baseRepositoryTest.testDelete(hopArrivalEntity, hopArrivalRepository);
     }
     @Test
-    public void testFindAll() {
+    void testFindAll() {
         OffsetDateTime offsetDateTime = OffsetDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         HopArrivalEntity hopArrivalEntity1 = HopArrivalEntity.builder().code("AAAA1111").description("abc").dateTime(offsetDateTime).parcel(new ArrayList<>()).build();
         HopArrivalEntity hopArrivalEntity2 = HopArrivalEntity.builder().code("AAAA2222").description("abc").dateTime(offsetDateTime).parcel(new ArrayList<>()).build();
         baseRepositoryTest.testFindAll(hopArrivalEntity1, hopArrivalEntity2, hopArrivalRepository);
     }
     @Test
-    public void testCount() {
+    void testCount() {
         OffsetDateTime offsetDateTime = OffsetDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         HopArrivalEntity hopArrivalEntity1 = HopArrivalEntity.builder().code("AAAA1111").description("abc").dateTime(offsetDateTime).parcel(new ArrayList<>()).build();
         HopArrivalEntity hopArrivalEntity2 = HopArrivalEntity.builder().code("AAAA2222").description("abc").dateTime(offsetDateTime).parcel(new ArrayList<>()).build();

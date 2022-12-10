@@ -3,7 +3,6 @@ package at.fhtw.swen3.persistence.entities;
 import lombok.*;
 
 import javax.persistence.*;
-import java.awt.*;
 
 @Getter
 @Setter
@@ -20,9 +19,9 @@ public class GeoCoordinateEntity  implements BaseEntity{
     private int id;
 
 
-    @Column(columnDefinition="Point")
-    private Point lat;
+    @Column
+    private Double lat;
 
-    @Column(columnDefinition="Point")
-    private Point  lon;
+    @Column
+    private Double  lon;
 }

@@ -21,7 +21,7 @@ public class RecipientEntity  implements BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     private int id;
 
-    @Pattern(regexp = "")
+    @Pattern(regexp = "^[A-ZÄÜÖß][A-ZÄÜÖa-zöäüß\\s\\-]+")
     @Column
     private String name;
 
@@ -33,7 +33,7 @@ public class RecipientEntity  implements BaseEntity{
     @Column
     private String postalCode;
 
-    @Pattern(regexp = "^[A-ZÄÜÖß].[A-ZÄÜÖa-zöäüß\\s\\-]+")
+    @Pattern(regexp = "^[A-ZÄÜÖß][A-ZÄÜÖa-zöäüß\\s\\-]+")
     @Column
     private String city;
 
