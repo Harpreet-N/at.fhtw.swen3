@@ -45,6 +45,7 @@ public class ParcelEntity  implements BaseEntity{
     @Column
     private String trackingId;
 
+    @NotNull
     @Column
     private TrackingInformation.StateEnum state;
 
