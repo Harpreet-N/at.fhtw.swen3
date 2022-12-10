@@ -1,18 +1,18 @@
 package at.fhtw.swen3.persistence.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "truck")
-public class TruckEntity {
+@ToString
+@EqualsAndHashCode
+@Entity
+public class TruckEntity  implements BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")

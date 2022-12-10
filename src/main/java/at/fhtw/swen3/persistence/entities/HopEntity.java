@@ -1,9 +1,6 @@
 package at.fhtw.swen3.persistence.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,10 +8,13 @@ import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "hop")
-public class HopEntity {
+@ToString
+@EqualsAndHashCode
+@Entity
+public class HopEntity  implements BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")

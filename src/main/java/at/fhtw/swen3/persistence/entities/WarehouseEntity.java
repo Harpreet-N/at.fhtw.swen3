@@ -1,9 +1,6 @@
 package at.fhtw.swen3.persistence.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,10 +9,13 @@ import java.util.List;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "warehouse")
-public class WarehouseEntity {
+@ToString
+@EqualsAndHashCode
+@Entity
+public class WarehouseEntity  implements BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
@@ -26,5 +26,7 @@ public class WarehouseEntity {
 
     @NotNull
     @OneToMany
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<WarehouseNextHopsEntity> nextHops = new ArrayList<>();
 }

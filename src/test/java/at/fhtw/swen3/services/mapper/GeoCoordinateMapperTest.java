@@ -4,16 +4,14 @@ import at.fhtw.swen3.persistence.entities.GeoCoordinateEntity;
 import at.fhtw.swen3.services.dto.GeoCoordinate;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GeoCoordinateMapperTest {
     @Test
     void mapGeoCoordinateDTOToEntity() {
         GeoCoordinate geoCoordinateDTO = new GeoCoordinate();
-        geoCoordinateDTO.lat(new Point(10,4));
-        geoCoordinateDTO.lon(new Point(10,4));
+        geoCoordinateDTO.lat(5.0);
+        geoCoordinateDTO.lon(10.3);
 
         GeoCoordinateEntity geoCoordinateEntity = GeoCoordinateMapper.INSTANCE.dtoToEntity(geoCoordinateDTO);
 
@@ -23,7 +21,7 @@ public class GeoCoordinateMapperTest {
 
     @Test
     void mapGeoCoordinateEntityToDTO() {
-        GeoCoordinateEntity geoCoordinateEntity = new GeoCoordinateEntity(1, new Point(15,8), new Point(40,64));
+        GeoCoordinateEntity geoCoordinateEntity = new GeoCoordinateEntity(1, 5.0, 10.3);
 
         GeoCoordinate geoCoordinateDTO = GeoCoordinateMapper.INSTANCE.entityToDto(geoCoordinateEntity);
 
