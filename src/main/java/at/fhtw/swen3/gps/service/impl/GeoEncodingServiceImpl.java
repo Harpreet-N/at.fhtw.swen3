@@ -29,8 +29,8 @@ public class GeoEncodingServiceImpl implements GeoEncodingService {
 
     private final RestTemplate restTemplate;
 
-    public GeoEncodingServiceImpl(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    public GeoEncodingServiceImpl() {
+        this.restTemplate = new RestTemplate();
     }
 
     @Override

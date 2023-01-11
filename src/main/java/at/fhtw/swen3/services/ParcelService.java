@@ -12,7 +12,7 @@ public interface ParcelService {
 
     Optional<ParcelEntity> reportParcelHop(String trackingId, String code);
 
-    ParcelEntity submitParcel(ParcelEntity parcel);
+    String submitParcel(ParcelEntity parcel);
 
     Optional<ParcelEntity> trackParcel(String trackingId);
 

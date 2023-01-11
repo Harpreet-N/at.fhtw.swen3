@@ -1,6 +1,7 @@
 package at.fhtw.swen3.persistence.entities;
 
 import lombok.*;
+import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 
@@ -20,8 +21,5 @@ public class GeoCoordinateEntity  implements BaseEntity{
 
 
     @Column
-    private Double lat;
-
-    @Column
-    private Double  lon;
+    private Point location;
 }

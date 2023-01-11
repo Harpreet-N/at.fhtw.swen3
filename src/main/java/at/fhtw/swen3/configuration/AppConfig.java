@@ -1,5 +1,6 @@
 package at.fhtw.swen3.configuration;
 
+import at.fhtw.swen3.gps.service.GeoEncodingService;
 import at.fhtw.swen3.persistence.repositories.ParcelRepository;
 import at.fhtw.swen3.persistence.repositories.WarehouseRepository;
 import at.fhtw.swen3.services.ParcelService;
@@ -13,8 +14,8 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
 
     @Bean
-    public ParcelService parcelService(ParcelRepository parcelRepository) {
-        return new ParcelServiceImpl(parcelRepository);
+    public ParcelService parcelService(ParcelRepository parcelRepository, GeoEncodingService geoEncodingService) {
+        return new ParcelServiceImpl(parcelRepository, geoEncodingService);
     }
 
     @Bean
