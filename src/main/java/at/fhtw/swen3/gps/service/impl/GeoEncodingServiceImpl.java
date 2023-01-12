@@ -23,7 +23,7 @@ public class GeoEncodingServiceImpl implements GeoEncodingService {
 
     private final RestTemplate restTemplate;
 
-    public GeoEncodingServiceImpl() {
+    public GeoEncodingServiceImpl(RestTemplate restTemplate) {
         this.restTemplate = new RestTemplate();
     }
 
