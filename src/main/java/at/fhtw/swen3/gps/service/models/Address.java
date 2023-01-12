@@ -1,10 +1,12 @@
 package at.fhtw.swen3.gps.service.models;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @Builder
+@Getter
+@Setter
+@AllArgsConstructor
 public class Address {
     private String street;
     private String postalCode;

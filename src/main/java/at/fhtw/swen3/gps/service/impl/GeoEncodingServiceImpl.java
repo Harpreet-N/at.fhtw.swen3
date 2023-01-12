@@ -19,13 +19,7 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class GeoEncodingServiceImpl implements GeoEncodingService {
-    public static final String OPENSTREETMAP_BASE_URL = "https://nominatim.openstreetmap.org/search";
-    public static final String FORMAT = "jsonv2";
-    public static final String FORMAT_PARAM = "format";
-    public static final String COUNTRY_PARAM = "country";
-    public static final String CITY_PARAM = "city";
-    public static final String POSTALCODE_PARAM = "postalcode";
-    public static final String STREET_PARAM = "street";
+
 
     private final RestTemplate restTemplate;
 
@@ -34,42 +28,29 @@ public class GeoEncodingServiceImpl implements GeoEncodingService {
     }
 
     @Override
-    public Optional<GeoCoordinate> encodeAddress(Address address) {
-        URI url = buildUrl(address);
-        log.debug("OpenStreetMaps url={}", url);
+    public Optional<GeoCoordinate> getCoordinates(Address address) {
+        URI url = urlForRequest(address);
         try {
             String json = restTemplate.getForObject(url, String.class);
-            log.debug("OpenStreetMaps response={}", json);
-
-            return mapJsonToGeoCoordinateOptional(json);
-        } catch (HttpClientErrorException e) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<GeoCoordinate> coordinates = objectMapper.readValue(json, new TypeReference<>() {
+            });
+            if (coordinates != null) {
+                return coordinates.stream().findFirst();
+            }
+        } catch (HttpClientErrorException | JsonProcessingException e) {
             log.warn("Error while fetching");
         }
         return Optional.empty();
     }
 
-    private Optional<GeoCoordinate> mapJsonToGeoCoordinateOptional(String json) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            List<GeoCoordinate> coordinates = objectMapper.readValue(json, new TypeReference<>() {
-            });
-            if (coordinates != null) {
-                log.debug("coordinates={}", coordinates);
-                return coordinates.stream().findFirst();
-            }
-        } catch (JsonProcessingException e) {
-            log.warn("Failed", e);
-        }
-        return Optional.empty();
-    }
-
-    private URI buildUrl(Address address) {
-        return UriComponentsBuilder.fromHttpUrl(OPENSTREETMAP_BASE_URL)
-                .queryParam(STREET_PARAM, address.getStreet())
-                .queryParam(POSTALCODE_PARAM, address.getPostalCode())
-                .queryParam(CITY_PARAM, address.getCity())
-                .queryParam(COUNTRY_PARAM, address.getCountry())
-                .queryParam(FORMAT_PARAM, FORMAT)
+    private URI urlForRequest(Address address) {
+        return UriComponentsBuilder.fromHttpUrl("https://nominatim.openstreetmap.org/search")
+                .queryParam("street", address.getStreet())
+                .queryParam("postalcode", address.getPostalCode())
+                .queryParam("city", address.getCity())
+                .queryParam("country", address.getCountry())
+                .queryParam("FORMAT_PARAM", "jsonv2")
                 .build().toUri();
     }
 }
