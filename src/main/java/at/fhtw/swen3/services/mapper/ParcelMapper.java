@@ -33,11 +33,4 @@ public interface ParcelMapper {
     @Mapping(source = "parcelEntity.recipient", target = "recipient")
     @Mapping(source = "parcelEntity.sender", target = "sender")
     Parcel entityToParcelDto(ParcelEntity parcelEntity);
-
-    @Mapping(target = "state", constant = "TRANSFERRED")
-    ParcelEntity fromDto(Parcel parcel);
-
-    @Mapping(target = "state", constant = "TRANSFERRED")
-    ParcelEntity fromDtoWithId(String trackingId, Parcel parcel);
-
 }
