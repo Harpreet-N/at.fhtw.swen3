@@ -5,6 +5,10 @@ import at.fhtw.swen3.persistence.entities.HopEntity;
 import at.fhtw.swen3.services.dto.GeoCoordinate;
 import at.fhtw.swen3.services.dto.Hop;
 import org.junit.jupiter.api.Test;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.io.WKTReader;
+
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,7 +21,7 @@ public class HopMapperTest {
         hopDTO.description("abc");
         hopDTO.processingDelayMins(23);
         hopDTO.locationName("abc");
-        hopDTO.locationCoordinates(new GeoCoordinate());
+        hopDTO.locationCoordinates(new GeoCoordinate().lat(1.0).lon(1.0));
 
         HopEntity hopEntity = HopMapper.INSTANCE.dtoToEntity(hopDTO);
 
@@ -26,13 +30,13 @@ public class HopMapperTest {
         assertEquals(hopDTO.getDescription(), hopEntity.getDescription());
         assertEquals(hopDTO.getProcessingDelayMins(), hopEntity.getProcessingDelayMins());
         assertEquals(hopDTO.getLocationName(), hopEntity.getLocationName());
-        assertEquals(hopDTO.getLocationCoordinates().getLat(), hopEntity.getLocationCoordinates().getLat());
-        assertEquals(hopDTO.getLocationCoordinates().getLon(), hopEntity.getLocationCoordinates().getLon());
+        assertEquals(hopDTO.getLocationCoordinates().getLat(), hopEntity.getLocationCoordinates().getLocation().getX());
+        assertEquals(hopDTO.getLocationCoordinates().getLon(), hopEntity.getLocationCoordinates().getLocation().getY());
     }
 
     @Test
     void mapHopEntityToDTO() {
-        HopEntity hopEntity = new HopEntity(1,"abc", "abc", "abc", 23, "abc", new GeoCoordinateEntity());
+        HopEntity hopEntity = new HopEntity(1,"abc", "abc", "abc", 23, "abc", new GeoCoordinateEntity(1, getDummyPoint()));
 
         Hop hopDTO = HopMapper.INSTANCE.entityToDto(hopEntity);
 
@@ -41,7 +45,17 @@ public class HopMapperTest {
         assertEquals(hopDTO.getDescription(), hopEntity.getDescription());
         assertEquals(hopDTO.getProcessingDelayMins(), hopEntity.getProcessingDelayMins());
         assertEquals(hopDTO.getLocationName(), hopEntity.getLocationName());
-        assertEquals(hopDTO.getLocationCoordinates().getLat(), hopEntity.getLocationCoordinates().getLat());
-        assertEquals(hopDTO.getLocationCoordinates().getLon(), hopEntity.getLocationCoordinates().getLon());
+        assertEquals(hopDTO.getLocationCoordinates().getLat(), hopEntity.getLocationCoordinates().getLocation().getX());
+        assertEquals(hopDTO.getLocationCoordinates().getLon(), hopEntity.getLocationCoordinates().getLocation().getY());
+    }
+
+    Point getDummyPoint() {
+        try {
+            String wktPoint = String.format(Locale.US, "POINT(%f %f)", 1.0, 1.0);
+            Point point = (Point) new WKTReader().read(wktPoint);
+            return point;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
