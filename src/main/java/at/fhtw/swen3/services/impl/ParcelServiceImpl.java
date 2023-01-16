@@ -51,6 +51,7 @@ public class ParcelServiceImpl implements ParcelService {
     public String submitParcel(ParcelEntity parcel) {
         parcel.setState(TrackingInformation.StateEnum.PICKUP);
         parcelRepository.save(parcel);
+        log.info(parcel.getTrackingId());
         return parcel.getTrackingId();
     }
 

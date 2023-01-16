@@ -4,11 +4,11 @@ import at.fhtw.swen3.persistence.entities.HopEntity;
 import at.fhtw.swen3.persistence.entities.WarehouseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface WarehouseService {
-    List<WarehouseEntity> exportWarehouses();
+    Optional<WarehouseEntity> exportWarehouses();
 
     HopEntity getWarehouse(String code);
 

@@ -55,7 +55,7 @@ public class ParcelRepositoryTest {
     void testFindAll() {
         RecipientEntity recipientEntity = getDummyRecipientEntity();
         ParcelEntity parcelEntity1 = ParcelEntity.builder().weight(1.0f).recipient(recipientEntity).sender(recipientEntity).trackingId("ABC123DEF").state(TrackingInformation.StateEnum.PICKUP).visitedHops(new ArrayList<>()).futureHops(new ArrayList<>()).build();
-        ParcelEntity parcelEntity2 = ParcelEntity.builder().weight(2.0f).recipient(recipientEntity).sender(recipientEntity).trackingId("ABC123DEF").state(TrackingInformation.StateEnum.PICKUP).visitedHops(new ArrayList<>()).futureHops(new ArrayList<>()).build();
+        ParcelEntity parcelEntity2 = ParcelEntity.builder().weight(2.0f).recipient(recipientEntity).sender(recipientEntity).trackingId("ABC123DEG").state(TrackingInformation.StateEnum.PICKUP).visitedHops(new ArrayList<>()).futureHops(new ArrayList<>()).build();
         baseRepositoryTest.testFindAll(parcelEntity1,parcelEntity2, parcelRepository);
     }
 
@@ -63,7 +63,7 @@ public class ParcelRepositoryTest {
     void testCount() {
         RecipientEntity recipientEntity = getDummyRecipientEntity();
         ParcelEntity parcelEntity1 = ParcelEntity.builder().weight(1.0f).recipient(recipientEntity).sender(recipientEntity).trackingId("ABC123DEF").state(TrackingInformation.StateEnum.PICKUP).visitedHops(new ArrayList<>()).futureHops(new ArrayList<>()).build();
-        ParcelEntity parcelEntity2 = ParcelEntity.builder().weight(2.0f).recipient(recipientEntity).sender(recipientEntity).trackingId("ABC123DEF").state(TrackingInformation.StateEnum.PICKUP).visitedHops(new ArrayList<>()).futureHops(new ArrayList<>()).build();
+        ParcelEntity parcelEntity2 = ParcelEntity.builder().weight(2.0f).recipient(recipientEntity).sender(recipientEntity).trackingId("ABC123DEG").state(TrackingInformation.StateEnum.PICKUP).visitedHops(new ArrayList<>()).futureHops(new ArrayList<>()).build();
         baseRepositoryTest.testCount(parcelEntity1,parcelEntity2, parcelRepository);
     }
 

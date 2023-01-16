@@ -2,9 +2,7 @@ package at.fhtw.swen3.configuration;
 
 import at.fhtw.swen3.gps.service.GeoEncodingService;
 import at.fhtw.swen3.gps.service.impl.GeoEncodingServiceImpl;
-import at.fhtw.swen3.persistence.repositories.HopRepository;
-import at.fhtw.swen3.persistence.repositories.ParcelRepository;
-import at.fhtw.swen3.persistence.repositories.WarehouseRepository;
+import at.fhtw.swen3.persistence.repositories.*;
 import at.fhtw.swen3.services.ParcelService;
 import at.fhtw.swen3.services.WarehouseService;
 import at.fhtw.swen3.services.impl.ParcelServiceImpl;
@@ -23,8 +21,8 @@ public class AppConfig {
     }
 
     @Bean
-    public WarehouseService warehouseService(WarehouseRepository warehouseRepository, HopRepository hopRepository) {
-        return new WarehouseServiceImpl(warehouseRepository, hopRepository);
+    public WarehouseService warehouseService(WarehouseRepository warehouseRepository, HopRepository hopRepository, WarehouseNextHopsRepository warehouseNextHopsRepository, GeoCoordinateRepository geoCoordinateRepository) {
+        return new WarehouseServiceImpl(warehouseRepository, warehouseNextHopsRepository, hopRepository, geoCoordinateRepository);
     }
 
     @Bean
