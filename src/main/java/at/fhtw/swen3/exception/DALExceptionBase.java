@@ -1,8 +1,8 @@
 package at.fhtw.swen3.exception;
 
-public abstract class DALExceptionBase extends  Exception{
+public class DALExceptionBase extends  Exception{
 
-    DALExceptionBase(String message) {
+    public DALExceptionBase(String message) {
         super(message);
     }
 }
