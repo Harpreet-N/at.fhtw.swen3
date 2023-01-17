@@ -1,8 +1,8 @@
 package at.fhtw.swen3.services.impl;
 
+import at.fhtw.swen3.exception.bl.BLPracelException;
 import at.fhtw.swen3.gps.service.GeoEncodingService;
 import at.fhtw.swen3.persistence.entities.HopArrivalEntity;
-import at.fhtw.swen3.persistence.entities.HopEntity;
 import at.fhtw.swen3.persistence.entities.ParcelEntity;
 import at.fhtw.swen3.persistence.repositories.HopRepository;
 import at.fhtw.swen3.persistence.repositories.ParcelRepository;
@@ -11,6 +11,8 @@ import at.fhtw.swen3.services.dto.TrackingInformation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -32,20 +34,54 @@ public class ParcelServiceImpl implements ParcelService {
     }
 
     @Override
-    public ParcelEntity reportParcelHop(String trackingId, String code) {
+    public ParcelEntity reportParcelHop(String trackingId, String code)  {
         ParcelEntity parcel = parcelRepository.findByTrackingId(trackingId);
-        HopEntity hop = hopRepository.findByCode(code);
-        switch (hop.getHopType()) {
-            case "Warehouse" -> parcel.setState(TrackingInformation.StateEnum.INTRANSPORT);
-            case "Truck" -> parcel.setState(TrackingInformation.StateEnum.INTRUCKDELIVERY);
-            case "TransferWarehouse" -> parcel.setState(TrackingInformation.StateEnum.TRANSFERRED);
+        if (parcel != null) {
+            validateFirstInFutureHops(parcel, code);
+            hopToArrivalToVisited(parcel);
+            setReportHopTrackingState(parcel, code);
+            parcelRepository.save(parcel);
+            return parcel;
         }
-        HopArrivalEntity visitedHop = (HopArrivalEntity) parcel.getFutureHops().stream().filter(hopArrivalEntity -> hopArrivalEntity.getCode().equals(code));
-        parcel.getVisitedHops().add(visitedHop);
-        parcel.getFutureHops().remove(0);
-        parcelRepository.save(parcel);
-        return parcel;
+        log.info("Parcel not found {}", trackingId);
+        throw new BLPracelException(trackingId);
     }
+
+    private void validateFirstInFutureHops(ParcelEntity parcel, String code) {
+        HopArrivalEntity hopArrival = findFirstFutureHop(parcel);
+        if (hopArrival == null || !code.equals(hopArrival.getCode())) {
+            throw new BLPracelException(code);
+        }
+    }
+
+    private void hopToArrivalToVisited(ParcelEntity parcel) {
+        HopArrivalEntity hopArrival = findFirstFutureHop(parcel);
+        if (hopArrival != null) {
+            parcel.getFutureHops().remove(hopArrival);
+            parcel.getVisitedHops().add(hopArrival);
+        }
+    }
+
+    private void setReportHopTrackingState(ParcelEntity parcel, String code) {
+        if (parcel.getFutureHops().isEmpty() && code.equals(getLastElement(parcel.getVisitedHops()).getCode())) {
+            parcel.setState(TrackingInformation.StateEnum.INTRUCKDELIVERY);
+        } else {
+            parcel.setState(TrackingInformation.StateEnum.INTRANSPORT);
+        }
+    }
+
+    private <T> T getLastElement(List<T> list) {
+        return list.get(list.size() - 1);
+    }
+
+    private HopArrivalEntity findFirstFutureHop(ParcelEntity parcel) {
+        for (HopArrivalEntity hopArrivalEntity : parcel.getFutureHops()) {
+            return hopArrivalEntity;
+        }
+        return null;
+    }
+
+
 
     @Override
     public String submitParcel(ParcelEntity parcel) {
