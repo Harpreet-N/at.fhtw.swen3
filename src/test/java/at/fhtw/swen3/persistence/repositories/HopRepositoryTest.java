@@ -4,9 +4,13 @@ import at.fhtw.swen3.persistence.entities.GeoCoordinateEntity;
 import at.fhtw.swen3.persistence.entities.HopEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.io.WKTReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
+
+import java.util.Locale;
 
 @SpringBootTest
 @TestPropertySource("/application.properties")
@@ -14,7 +18,6 @@ class HopRepositoryTest {
     private final HopRepository hopRepository;
     private final GeoCoordinateRepository geoCoordinateRepository;
     private final BaseRepositoryTest baseRepositoryTest;
-    private int id;
 
     @Autowired
     public HopRepositoryTest(HopRepository hopRepository, GeoCoordinateRepository geoCoordinateRepository) {
@@ -64,9 +67,19 @@ class HopRepositoryTest {
         baseRepositoryTest.testCount(hopEntity1, hopEntity2, hopRepository);
     }
 
-    GeoCoordinateEntity getDummyGeoCoordinateEntity(){
-        GeoCoordinateEntity geoCoordinateEntity = GeoCoordinateEntity.builder().lat(1.0).lon(1.0).build();
+    GeoCoordinateEntity getDummyGeoCoordinateEntity() {
+        GeoCoordinateEntity geoCoordinateEntity = GeoCoordinateEntity.builder().location(getDummyPoint()).build();
         geoCoordinateRepository.save(geoCoordinateEntity);
         return geoCoordinateEntity;
+    }
+
+    Point getDummyPoint() {
+        try {
+            String wktPoint = String.format(Locale.US, "POINT(%f %f)", 1.0, 1.0);
+            Point point = (Point) new WKTReader().read(wktPoint);
+            return point;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

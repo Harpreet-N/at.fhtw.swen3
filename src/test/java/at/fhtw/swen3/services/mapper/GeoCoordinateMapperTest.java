@@ -3,6 +3,10 @@ package at.fhtw.swen3.services.mapper;
 import at.fhtw.swen3.persistence.entities.GeoCoordinateEntity;
 import at.fhtw.swen3.services.dto.GeoCoordinate;
 import org.junit.jupiter.api.Test;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.io.WKTReader;
+
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,17 +19,28 @@ public class GeoCoordinateMapperTest {
 
         GeoCoordinateEntity geoCoordinateEntity = GeoCoordinateMapper.INSTANCE.dtoToEntity(geoCoordinateDTO);
 
-        assertEquals(geoCoordinateDTO.getLat(), geoCoordinateEntity.getLat());
-        assertEquals(geoCoordinateDTO.getLon(), geoCoordinateEntity.getLon());
+        assertEquals(geoCoordinateDTO.getLat(), geoCoordinateEntity.getLocation().getX());
+        assertEquals(geoCoordinateDTO.getLon(), geoCoordinateEntity.getLocation().getY());
     }
 
     @Test
     void mapGeoCoordinateEntityToDTO() {
-        GeoCoordinateEntity geoCoordinateEntity = new GeoCoordinateEntity(1, 5.0, 10.3);
+        Point point = getDummyPoint();
+        GeoCoordinateEntity geoCoordinateEntity = new GeoCoordinateEntity(1, point);
 
         GeoCoordinate geoCoordinateDTO = GeoCoordinateMapper.INSTANCE.entityToDto(geoCoordinateEntity);
 
-        assertEquals(geoCoordinateDTO.getLat(), geoCoordinateEntity.getLat());
-        assertEquals(geoCoordinateDTO.getLon(), geoCoordinateEntity.getLon());
+        assertEquals(geoCoordinateDTO.getLat(), geoCoordinateEntity.getLocation().getX());
+        assertEquals(geoCoordinateDTO.getLon(), geoCoordinateEntity.getLocation().getY());
+    }
+
+    Point getDummyPoint() {
+        try {
+            String wktPoint = String.format(Locale.US, "POINT(%f %f)", 1.0, 1.0);
+            Point point = (Point) new WKTReader().read(wktPoint);
+            return point;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

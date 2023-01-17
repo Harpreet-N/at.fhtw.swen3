@@ -21,6 +21,11 @@ public interface ParcelMapper {
     @Mapping(source = "newParcelInfo.trackingId", target = "trackingId")
     ParcelEntity dtoToEntity(NewParcelInfo newParcelInfo, TrackingInformation trackingInformation, Parcel parcel);
 
+    @Mapping(source = "parcel.weight", target = "weight")
+    @Mapping(source = "parcel.recipient", target = "recipient")
+    @Mapping(source = "parcel.sender", target = "sender")
+    ParcelEntity parcelDtoToEntity(Parcel parcel);
+
     @Mapping(source = "parcelEntity.trackingId", target = "trackingId")
     NewParcelInfo entityToNewParcelInfoDto(ParcelEntity parcelEntity);
 
@@ -33,5 +38,4 @@ public interface ParcelMapper {
     @Mapping(source = "parcelEntity.recipient", target = "recipient")
     @Mapping(source = "parcelEntity.sender", target = "sender")
     Parcel entityToParcelDto(ParcelEntity parcelEntity);
-
 }

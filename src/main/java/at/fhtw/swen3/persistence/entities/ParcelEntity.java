@@ -42,7 +42,8 @@ public class ParcelEntity  implements BaseEntity{
 
     @Pattern(regexp = "^[A-Z0-9]{9}$")
     @NotNull
-    @Column
+    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     private String trackingId;
 
     @NotNull
