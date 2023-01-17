@@ -26,7 +26,7 @@ public class WarehouseServiceImpl implements WarehouseService {
 
     @Override
     public Optional<WarehouseEntity> exportWarehouses() {
-        return warehouseRepository.findById(1);
+        return warehouseRepository.findByLevel(0);
     }
 
     @Override
