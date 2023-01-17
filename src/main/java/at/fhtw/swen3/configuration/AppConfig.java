@@ -19,18 +19,9 @@ public class AppConfig {
     public ParcelService parcelService(ParcelRepository parcelRepository, HopRepository hopRepository, GeoEncodingService geoEncodingService) {
         return new ParcelServiceImpl(parcelRepository, hopRepository, geoEncodingService);
     }
-    @Bean
-    public ParcelServiceImpl parcelServiceImpl(ParcelRepository parcelRepository, HopRepository hopRepository, GeoEncodingService geoEncodingService) {
-        return new ParcelServiceImpl(parcelRepository, hopRepository, geoEncodingService);
-    }
 
     @Bean
     public WarehouseService warehouseService(WarehouseRepository warehouseRepository, HopRepository hopRepository, WarehouseNextHopsRepository warehouseNextHopsRepository, GeoCoordinateRepository geoCoordinateRepository) {
-        return new WarehouseServiceImpl(warehouseRepository, warehouseNextHopsRepository, hopRepository, geoCoordinateRepository);
-    }
-
-    @Bean
-    public WarehouseServiceImpl warehouseServiceImpl(WarehouseRepository warehouseRepository, HopRepository hopRepository, WarehouseNextHopsRepository warehouseNextHopsRepository, GeoCoordinateRepository geoCoordinateRepository) {
         return new WarehouseServiceImpl(warehouseRepository, warehouseNextHopsRepository, hopRepository, geoCoordinateRepository);
     }
 
