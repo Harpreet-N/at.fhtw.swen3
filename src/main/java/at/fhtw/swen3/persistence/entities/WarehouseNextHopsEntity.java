@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class WarehouseNextHopsEntity implements BaseEntity {
 
+    @Column(name="Warehouse_ID")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     private int id;
@@ -25,4 +26,7 @@ public class WarehouseNextHopsEntity implements BaseEntity {
     @NotNull
     @OneToOne
     private HopEntity hop;
+
+    @JoinColumn(name = "WAREHOUSE_ID")
+    private WarehouseEntity warehouse;
 }

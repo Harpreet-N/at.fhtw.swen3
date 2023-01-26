@@ -8,6 +8,7 @@ import at.fhtw.swen3.services.WarehouseService;
 import at.fhtw.swen3.services.dto.Hop;
 import at.fhtw.swen3.services.dto.Warehouse;
 import at.fhtw.swen3.services.impl.WarehouseServiceImpl;
+import at.fhtw.swen3.services.mapper.WarehouseContext;
 import at.fhtw.swen3.services.mapper.WarehouseMapper;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
@@ -71,6 +72,7 @@ public class WarehouseApiController implements WarehouseApi {
     @Override
     public ResponseEntity<Void> importWarehouses(@Parameter(name = "Warehouse", description = "", required = true) @Valid @RequestBody Warehouse warehouse) {
         WarehouseEntity warehouseEntity = warehouseMapper.dtoToEntity(warehouse);
+        warehouseMapper.INSTANCE.fromDto(warehouseEntity, new WarehouseContext());
         warehouseService.importWarehouses(warehouseEntity);
         log.info("Warehouse hierarchy imported");
         log.info("Warehouse: {}", warehouseEntity.toString());

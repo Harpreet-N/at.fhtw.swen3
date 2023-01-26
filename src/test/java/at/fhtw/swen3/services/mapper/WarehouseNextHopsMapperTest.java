@@ -28,7 +28,7 @@ public class WarehouseNextHopsMapperTest {
 
     @Test
     void mapWarehouseNextHopsEntityToDTO() {
-        WarehouseNextHopsEntity warehouseNextHopsEntity = new WarehouseNextHopsEntity(1,27, new HopEntity());
+        WarehouseNextHopsEntity warehouseNextHopsEntity = new WarehouseNextHopsEntity(1,27, new HopEntity(), null);
 
         WarehouseNextHops warehouseNextHopsDTO = WarehouseNextHopsMapper.INSTANCE.entityToDto(warehouseNextHopsEntity);
 
