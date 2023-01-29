@@ -16,7 +16,7 @@ public class WarehouseMapperTest {
         warehouseDTO.level(27);
         warehouseDTO.nextHops(new ArrayList<>());
 
-        WarehouseEntity warehouseEntity = WarehouseMapper.INSTANCE.dtoToEntity(warehouseDTO);
+        WarehouseEntity warehouseEntity = WarehouseMapper.INSTANCE.dtoToEntityNoContext(warehouseDTO);
 
         assertEquals(warehouseDTO.getLevel(), warehouseEntity.getLevel());
         assertEquals(warehouseDTO.getNextHops(), warehouseEntity.getNextHops());

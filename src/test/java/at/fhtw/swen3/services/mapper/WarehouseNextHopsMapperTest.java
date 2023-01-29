@@ -1,8 +1,10 @@
 package at.fhtw.swen3.services.mapper;
 
 import at.fhtw.swen3.persistence.entities.HopEntity;
+import at.fhtw.swen3.persistence.entities.WarehouseEntity;
 import at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity;
 import at.fhtw.swen3.services.dto.Hop;
+import at.fhtw.swen3.services.dto.Warehouse;
 import at.fhtw.swen3.services.dto.WarehouseNextHops;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +30,7 @@ public class WarehouseNextHopsMapperTest {
 
     @Test
     void mapWarehouseNextHopsEntityToDTO() {
-        WarehouseNextHopsEntity warehouseNextHopsEntity = new WarehouseNextHopsEntity(1,27, new HopEntity());
+        WarehouseNextHopsEntity warehouseNextHopsEntity = new WarehouseNextHopsEntity(1,27, new HopEntity(),new WarehouseEntity());
 
         WarehouseNextHops warehouseNextHopsDTO = WarehouseNextHopsMapper.INSTANCE.entityToDto(warehouseNextHopsEntity);
 

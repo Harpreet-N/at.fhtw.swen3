@@ -3,6 +3,7 @@ package at.fhtw.swen3.persistence.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -23,6 +24,16 @@ public class WarehouseNextHopsEntity implements BaseEntity {
     private Integer traveltimeMins;
 
     @NotNull
-    @OneToOne
+    @Valid
+    @OneToOne(mappedBy = "warehouseNextHops", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private HopEntity hop;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "WAREHOUSE_ID")
+    private WarehouseEntity warehouse;
+
+    public void setHop(HopEntity hop) {
+        this.hop = hop;
+        hop.setWarehouseNextHops(this);
+    }
 }

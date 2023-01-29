@@ -65,8 +65,7 @@ public class WarehouseApiController implements WarehouseApi {
     @Override
     public ResponseEntity<Void> importWarehouses(@Parameter(name = "Warehouse", description = "", required = true) @Valid @RequestBody Warehouse warehouse) throws BLWarehouseException {
         log.info("importWarehouses called");
-        WarehouseEntity warehouseEntity = warehouseMapper.dtoToEntity(warehouse);
-        warehouseService.importWarehouses(warehouseEntity);
+        warehouseService.importWarehouses(warehouse);
         log.info("Warehouse hierarchy imported");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

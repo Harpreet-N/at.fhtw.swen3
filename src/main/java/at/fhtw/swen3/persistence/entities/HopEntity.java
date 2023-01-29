@@ -1,6 +1,7 @@
 package at.fhtw.swen3.persistence.entities;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -8,7 +9,7 @@ import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -41,4 +42,8 @@ public class HopEntity implements BaseEntity {
     @NotNull
     @OneToOne
     private GeoCoordinateEntity locationCoordinates;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "WAREHOUSE_NEXT_HOPS_ID", referencedColumnName = "ID")
+    private WarehouseNextHopsEntity warehouseNextHops;
 }

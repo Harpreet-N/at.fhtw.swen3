@@ -8,7 +8,10 @@ import at.fhtw.swen3.persistence.repositories.HopRepository;
 import at.fhtw.swen3.persistence.repositories.WarehouseNextHopsRepository;
 import at.fhtw.swen3.persistence.repositories.WarehouseRepository;
 import at.fhtw.swen3.services.WarehouseService;
+import at.fhtw.swen3.services.dto.Warehouse;
 import at.fhtw.swen3.services.exception.BLWarehouseException;
+import at.fhtw.swen3.services.mapper.WarehouseMapper;
+import at.fhtw.swen3.services.mapper.WarehouseMapperContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -61,13 +64,11 @@ public class WarehouseServiceImpl implements WarehouseService {
     }
 
     @Override
-    public void importWarehouses(WarehouseEntity warehouse) throws BLWarehouseException {
+    public void importWarehouses(Warehouse warehouse) throws BLWarehouseException {
         try {
+            var warehouseEntity = WarehouseMapper.INSTANCE.dtoToEntity(warehouse, new WarehouseMapperContext());
             warehouseRepository.deleteAll();
-            warehouse.getNextHops().stream().map(warehouseNextHopsEntity -> warehouseNextHopsEntity.getHop().getLocationCoordinates()).forEach(geoCoordinateRepository::save);
-            warehouse.getNextHops().stream().map(WarehouseNextHopsEntity::getHop).forEach(hopRepository::save);
-            warehouseNextHopsRepository.saveAll(warehouse.getNextHops());
-            warehouseRepository.save(warehouse);
+            warehouseRepository.save(warehouseEntity);
             log.info("importWarehouses successful");
         } catch (Exception e) {
             log.error("importWarehouses failed! Reason: {}", e.getMessage());

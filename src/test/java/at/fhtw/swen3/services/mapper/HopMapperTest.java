@@ -36,7 +36,7 @@ public class HopMapperTest {
 
     @Test
     void mapHopEntityToDTO() {
-        HopEntity hopEntity = new HopEntity(1,"abc", "abc", "abc", 23, "abc", new GeoCoordinateEntity(1, getDummyPoint()));
+        HopEntity hopEntity = new HopEntity(1,"abc", "abc", "abc", 23, "abc", new GeoCoordinateEntity(1, getDummyPoint()), null);
 
         Hop hopDTO = HopMapper.INSTANCE.entityToDto(hopEntity);
 
