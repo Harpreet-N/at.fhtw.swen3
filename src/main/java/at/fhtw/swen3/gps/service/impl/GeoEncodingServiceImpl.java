@@ -7,6 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.io.ParseException;
+import org.locationtech.jts.io.WKTReader;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -14,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -28,7 +32,7 @@ public class GeoEncodingServiceImpl implements GeoEncodingService {
     }
 
     @Override
-    public Optional<GeoCoordinate> getCoordinates(Address address) {
+    public Point getCoordinates(Address address) {
         URI url = urlForRequest(address);
         try {
             String json = restTemplate.getForObject(url, String.class);
@@ -36,15 +40,26 @@ public class GeoEncodingServiceImpl implements GeoEncodingService {
             List<GeoCoordinate> coordinates = objectMapper.readValue(json, new TypeReference<>() {
             });
             if (coordinates != null) {
-                return coordinates.stream().findFirst();
+                Optional<GeoCoordinate> tempGeoCoordinate = coordinates.stream().findFirst();
+                if(tempGeoCoordinate.isPresent()){
+                    GeoCoordinate geoCoordinate = tempGeoCoordinate.get();
+                    String wktPoint = String.format(Locale.US, "POINT(%f %f)", geoCoordinate.getLat(), geoCoordinate.getLon());
+                    Point point;
+                    try {
+                        point = (Point) new WKTReader().read(wktPoint);
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
+                    return point;
+                }
             }
         } catch (HttpClientErrorException | JsonProcessingException e) {
             log.warn("Error while fetching");
         }
-        return Optional.empty();
+        return null;
     }
 
-    private URI urlForRequest(Address address) {
+    public URI urlForRequest(Address address) {
         return UriComponentsBuilder.fromHttpUrl("https://nominatim.openstreetmap.org/search")
                 .queryParam("street", address.getStreet())
                 .queryParam("postalcode", address.getPostalCode())

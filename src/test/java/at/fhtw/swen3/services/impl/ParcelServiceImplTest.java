@@ -117,11 +117,11 @@ class ParcelServiceImplTest {
     }
 
     private GeoCoordinate buildRecipientGeo() {
-        return GeoCoordinate.builder().lat("10").lon("20").build();
+        return GeoCoordinate.builder().lat(10.0).lon(20.0).build();
     }
 
     private GeoCoordinate buildSenderGeo() {
-        return GeoCoordinate.builder().lat("20").lon("20").build();
+        return GeoCoordinate.builder().lat(20.0).lon(20.0).build();
     }
 
 }
