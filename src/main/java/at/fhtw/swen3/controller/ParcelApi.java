@@ -9,6 +9,7 @@ import at.fhtw.swen3.services.dto.Error;
 import at.fhtw.swen3.services.dto.NewParcelInfo;
 import at.fhtw.swen3.services.dto.Parcel;
 import at.fhtw.swen3.services.dto.TrackingInformation;
+import at.fhtw.swen3.services.exception.BLParcelException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -67,7 +68,7 @@ public interface ParcelApi {
     )
     default ResponseEntity<Void> reportParcelDelivery(
         @Pattern(regexp = "^[A-Z0-9]{9}$") @Parameter(name = "trackingId", description = "The tracking ID of the parcel. E.g. PYJRB4HZ6 ", required = true) @PathVariable("trackingId") String trackingId
-    ) {
+    ) throws BLParcelException {
         return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
@@ -102,7 +103,7 @@ public interface ParcelApi {
     default ResponseEntity<Void> reportParcelHop(
         @Pattern(regexp = "^[A-Z0-9]{9}$") @Parameter(name = "trackingId", description = "The tracking ID of the parcel. E.g. PYJRB4HZ6 ", required = true) @PathVariable("trackingId") String trackingId,
         @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$") @Parameter(name = "code", description = "The Code of the hop (Warehouse or Truck).", required = true) @PathVariable("code") String code
-    ) {
+    ) throws BLParcelException {
         return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
@@ -140,7 +141,7 @@ public interface ParcelApi {
     )
     default ResponseEntity<NewParcelInfo> submitParcel(
         @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody Parcel parcel
-    ) {
+    ) throws BLParcelException {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -184,7 +185,7 @@ public interface ParcelApi {
     )
     default ResponseEntity<TrackingInformation> trackParcel(
         @Pattern(regexp = "^[A-Z0-9]{9}$") @Parameter(name = "trackingId", description = "The tracking ID of the parcel. E.g. PYJRB4HZ6 ", required = true) @PathVariable("trackingId") String trackingId
-    ) {
+    ) throws BLParcelException {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -231,7 +232,7 @@ public interface ParcelApi {
     default ResponseEntity<NewParcelInfo> transitionParcel(
         @Pattern(regexp = "^[A-Z0-9]{9}$") @Parameter(name = "trackingId", description = "The tracking ID of the parcel. E.g. PYJRB4HZ6 ", required = true) @PathVariable("trackingId") String trackingId,
         @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody Parcel parcel
-    ) {
+    ) throws BLParcelException {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

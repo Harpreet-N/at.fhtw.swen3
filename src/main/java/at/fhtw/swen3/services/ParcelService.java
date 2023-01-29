@@ -1,18 +1,19 @@
 package at.fhtw.swen3.services;
 
 import at.fhtw.swen3.persistence.entities.ParcelEntity;
+import at.fhtw.swen3.services.exception.BLParcelException;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface ParcelService {
 
-    ParcelEntity reportParcelDelivery(String trackingId);
+    ParcelEntity reportParcelDelivery(String trackingId) throws BLParcelException;
 
-    ParcelEntity reportParcelHop(String trackingId, String code);
+    ParcelEntity reportParcelHop(String trackingId, String code) throws BLParcelException;
 
-    String submitParcel(ParcelEntity parcel);
+    String submitParcel(ParcelEntity parcel) throws BLParcelException;
 
-    ParcelEntity trackParcel(String trackingId);
+    ParcelEntity trackParcel(String trackingId) throws BLParcelException;
 
-    ParcelEntity transferParcel(ParcelEntity parcel);
+    ParcelEntity transitionParcel(ParcelEntity parcel) throws BLParcelException;
 }

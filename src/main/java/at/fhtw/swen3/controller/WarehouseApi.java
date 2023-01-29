@@ -8,6 +8,7 @@ package at.fhtw.swen3.controller;
 import at.fhtw.swen3.services.dto.Error;
 import at.fhtw.swen3.services.dto.Hop;
 import at.fhtw.swen3.services.dto.Warehouse;
+import at.fhtw.swen3.services.exception.BLWarehouseException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -66,7 +67,7 @@ public interface WarehouseApi {
     )
     default ResponseEntity<Warehouse> exportWarehouses(
         
-    ) {
+    ) throws BLWarehouseException {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -110,7 +111,7 @@ public interface WarehouseApi {
     )
     default ResponseEntity<Hop> getWarehouse(
         @Parameter(name = "code", description = "", required = true) @PathVariable("code") String code
-    ) {
+    ) throws BLWarehouseException {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -151,7 +152,7 @@ public interface WarehouseApi {
     )
     default ResponseEntity<Void> importWarehouses(
         @Parameter(name = "Warehouse", description = "", required = true) @Valid @RequestBody Warehouse warehouse
-    ) {
+    ) throws BLWarehouseException {
         return new ResponseEntity<>(HttpStatus.CREATED);
 
     }

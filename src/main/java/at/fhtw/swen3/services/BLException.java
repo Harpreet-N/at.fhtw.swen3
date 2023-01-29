@@ -1,9 +1,7 @@
 package at.fhtw.swen3.services;
 
 public abstract class BLException extends Exception{
-
-
-    BLException(String message) {
+    protected BLException(String message) {
         super(message);
     }
 }

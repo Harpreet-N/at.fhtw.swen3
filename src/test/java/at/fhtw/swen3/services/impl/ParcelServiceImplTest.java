@@ -9,19 +9,20 @@ import at.fhtw.swen3.persistence.repositories.HopRepository;
 import at.fhtw.swen3.persistence.repositories.ParcelRepository;
 import at.fhtw.swen3.persistence.repositories.TruckRepository;
 import at.fhtw.swen3.persistence.repositories.WarehouseNextHopsRepository;
+import at.fhtw.swen3.services.exception.BLParcelException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static at.fhtw.swen3.services.dto.TrackingInformation.StateEnum.*;
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
+import static at.fhtw.swen3.services.dto.TrackingInformation.StateEnum.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ParcelServiceImplTest {
@@ -58,7 +59,7 @@ class ParcelServiceImplTest {
     }
 
     @Test
-    void reportParcelHopTest() {
+    void reportParcelHopTest() throws BLParcelException {
         ParcelEntity parcel = buildParcel(trackingId);
         parcel.setVisitedHops(buildHop(visitedHops));
         parcel.setFutureHops(buildHop(futureHops, futureHop));
@@ -73,7 +74,7 @@ class ParcelServiceImplTest {
     }
 
     @Test
-    void reportParcelTrucklHopTest() {
+    void reportParcelTrucklHopTest() throws BLParcelException {
         final String truckHopCode = "lastTruck";
         ParcelEntity parcel = buildParcel("trackingId");
         parcel.setVisitedHops(buildHop(visitedHops));
