@@ -9,6 +9,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RecipientEntityConstraint {
     String message() default "Invalid input";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }

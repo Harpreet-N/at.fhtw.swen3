@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface WarehouseRepository extends JpaRepository<WarehouseEntity, Integer>  {
+public interface WarehouseRepository extends JpaRepository<WarehouseEntity, Integer> {
 
     Optional<WarehouseEntity> findByLevel(int i);
 }

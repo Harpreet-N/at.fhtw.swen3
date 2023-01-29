@@ -52,7 +52,7 @@ public class WarehouseServiceImpl implements WarehouseService {
             log.error("getWarehouse failed! Reason: {}", e.getMessage());
             throw new BLWarehouseException("getWarehouse failed");
         }
-        if(hopEntity != null) {
+        if (hopEntity != null) {
             log.info("getWarehouse successful");
             return hopEntity;
         }

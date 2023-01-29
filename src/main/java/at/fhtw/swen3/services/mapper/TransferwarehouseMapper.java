@@ -7,7 +7,8 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface TransferwarehouseMapper {
-    TransferwarehouseMapper INSTANCE = Mappers.getMapper( TransferwarehouseMapper.class );
+    TransferwarehouseMapper INSTANCE = Mappers.getMapper(TransferwarehouseMapper.class);
+
     Transferwarehouse entityToDto(TransferwarehouseEntity transferwarehouseEntity);
 
     TransferwarehouseEntity dtoToEntity(Transferwarehouse transferwarehouse);

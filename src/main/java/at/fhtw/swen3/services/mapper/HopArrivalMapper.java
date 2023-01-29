@@ -7,7 +7,8 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface HopArrivalMapper {
-    HopArrivalMapper INSTANCE = Mappers.getMapper( HopArrivalMapper.class );
+    HopArrivalMapper INSTANCE = Mappers.getMapper(HopArrivalMapper.class);
+
     HopArrival entityToDto(HopArrivalEntity hopArrivalEntity);
 
     HopArrivalEntity dtoToEntity(HopArrival hopArrival);

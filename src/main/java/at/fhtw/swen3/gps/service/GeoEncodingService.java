@@ -8,7 +8,7 @@ import java.net.URI;
 
 @Service
 public interface GeoEncodingService {
-    Point getCoordinates(Address address);
+    Point getPointFromAddress(Address address);
 
-    URI urlForRequest(Address address);
+    URI getUrlFromAddress(Address address);
 }

@@ -7,7 +7,9 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface ErrorMapper {
-    ErrorMapper INSTANCE = Mappers.getMapper( ErrorMapper.class );
+    ErrorMapper INSTANCE = Mappers.getMapper(ErrorMapper.class);
+
     Error entityToDto(ErrorEntity errorEntity);
+
     ErrorEntity dtoToEntity(Error error);
 }

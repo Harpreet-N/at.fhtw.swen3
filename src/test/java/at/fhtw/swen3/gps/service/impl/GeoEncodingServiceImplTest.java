@@ -35,7 +35,7 @@ public class GeoEncodingServiceImplTest {
         Point expectedPoint = (Point) new WKTReader().read("POINT(12.34 56.78)");
         doReturn(json).when(restTemplate).getForObject(any(URI.class), any());
 
-        Point result = geoEncodingService.getCoordinates(address);
+        Point result = geoEncodingService.getPointFromAddress(address);
         assertEquals(expectedPoint, result);
     }
 
@@ -44,7 +44,7 @@ public class GeoEncodingServiceImplTest {
         Address address = new Address("Street", "PostalCode", "City", "Country");
         doThrow(new HttpClientErrorException(HttpStatus.BAD_REQUEST)).when(restTemplate).getForObject(any(URI.class), any());
 
-        Point result = geoEncodingService.getCoordinates(address);
+        Point result = geoEncodingService.getPointFromAddress(address);
         assertNull(result);
     }
 
@@ -53,7 +53,7 @@ public class GeoEncodingServiceImplTest {
         Address address = new Address("Street", "PostalCode", "City", "Country");
         URI expectedUri = URI.create("https://nominatim.openstreetmap.org/search?street=Street&postalcode=PostalCode&city=City&country=Country&FORMAT_PARAM=jsonv2");
 
-        URI result = geoEncodingService.urlForRequest(address);
+        URI result = geoEncodingService.getUrlFromAddress(address);
         assertEquals(expectedUri, result);
     }
 }

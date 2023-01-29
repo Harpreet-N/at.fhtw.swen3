@@ -1,6 +1,5 @@
 package at.fhtw.swen3.controller.rest;
 
-import at.fhtw.swen3.services.BLException;
 import at.fhtw.swen3.services.dto.Error;
 import at.fhtw.swen3.services.exception.BLParcelException;
 import at.fhtw.swen3.services.exception.BLWarehouseException;
@@ -11,17 +10,15 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@ControllerAdvice
 @Slf4j
+@ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler({
-            BLParcelException.class,
-            BLWarehouseException.class
-    })
-    public ResponseEntity<Error> handleGenericException(Exception exception) {
+    @ExceptionHandler({BLParcelException.class, BLWarehouseException.class})
+    public ResponseEntity<Error> handleException(Exception exception) {
         String message = "An error occurred!";
-        Error error = new Error().errorMessage(message);
-        log.warn(exception.getMessage(), exception);
+        Error error = new Error();
+        error.errorMessage(message);
+        log.error(exception.getMessage(), exception);
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }

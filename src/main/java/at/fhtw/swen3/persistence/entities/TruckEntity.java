@@ -12,7 +12,7 @@ import javax.persistence.*;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class TruckEntity  implements BaseEntity{
+public class TruckEntity implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")

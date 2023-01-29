@@ -32,8 +32,8 @@ public class GeoEncodingServiceImpl implements GeoEncodingService {
     }
 
     @Override
-    public Point getCoordinates(Address address) {
-        URI url = urlForRequest(address);
+    public Point getPointFromAddress(Address address) {
+        URI url = getUrlFromAddress(address);
         try {
             String json = restTemplate.getForObject(url, String.class);
             ObjectMapper objectMapper = new ObjectMapper();
@@ -41,7 +41,7 @@ public class GeoEncodingServiceImpl implements GeoEncodingService {
             });
             if (coordinates != null) {
                 Optional<GeoCoordinate> tempGeoCoordinate = coordinates.stream().findFirst();
-                if(tempGeoCoordinate.isPresent()){
+                if (tempGeoCoordinate.isPresent()) {
                     GeoCoordinate geoCoordinate = tempGeoCoordinate.get();
                     String wktPoint = String.format(Locale.US, "POINT(%f %f)", geoCoordinate.getLat(), geoCoordinate.getLon());
                     Point point;
@@ -59,13 +59,7 @@ public class GeoEncodingServiceImpl implements GeoEncodingService {
         return null;
     }
 
-    public URI urlForRequest(Address address) {
-        return UriComponentsBuilder.fromHttpUrl("https://nominatim.openstreetmap.org/search")
-                .queryParam("street", address.getStreet())
-                .queryParam("postalcode", address.getPostalCode())
-                .queryParam("city", address.getCity())
-                .queryParam("country", address.getCountry())
-                .queryParam("FORMAT_PARAM", "jsonv2")
-                .build().toUri();
+    public URI getUrlFromAddress(Address address) {
+        return UriComponentsBuilder.fromHttpUrl("https://nominatim.openstreetmap.org/search").queryParam("street", address.getStreet()).queryParam("postalcode", address.getPostalCode()).queryParam("city", address.getCity()).queryParam("country", address.getCountry()).queryParam("FORMAT_PARAM", "jsonv2").build().toUri();
     }
 }

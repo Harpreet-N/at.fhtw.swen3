@@ -14,7 +14,7 @@ import javax.validation.constraints.Pattern;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class HopEntity  implements BaseEntity{
+public class HopEntity implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")

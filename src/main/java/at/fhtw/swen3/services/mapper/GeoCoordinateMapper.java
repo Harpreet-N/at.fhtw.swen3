@@ -2,9 +2,7 @@ package at.fhtw.swen3.services.mapper;
 
 import at.fhtw.swen3.persistence.entities.GeoCoordinateEntity;
 import at.fhtw.swen3.services.dto.GeoCoordinate;
-import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.Point;
-import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKTReader;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -25,7 +23,7 @@ public interface GeoCoordinateMapper {
     GeoCoordinateEntity dtoToEntity(GeoCoordinate geoCoordinate);
 
     @Named("coordsToPoint")
-    static Point coordsToPoint(GeoCoordinate geoCoordinate){
+    static Point coordsToPoint(GeoCoordinate geoCoordinate) {
         try {
             String wktPoint = String.format(Locale.US, "POINT(%f %f)", geoCoordinate.getLat(), geoCoordinate.getLon());
             Point point = (Point) new WKTReader().read(wktPoint);

@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class WarehouseEntity  implements BaseEntity{
+public class WarehouseEntity implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")

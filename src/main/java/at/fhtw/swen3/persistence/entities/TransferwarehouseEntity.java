@@ -13,7 +13,7 @@ import javax.persistence.*;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class TransferwarehouseEntity  implements BaseEntity{
+public class TransferwarehouseEntity implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")

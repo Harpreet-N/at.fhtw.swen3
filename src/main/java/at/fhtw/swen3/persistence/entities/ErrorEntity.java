@@ -12,7 +12,7 @@ import javax.persistence.*;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class ErrorEntity implements BaseEntity{
+public class ErrorEntity implements BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     private int id;

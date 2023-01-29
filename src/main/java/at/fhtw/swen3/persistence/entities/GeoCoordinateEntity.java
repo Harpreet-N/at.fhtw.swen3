@@ -13,7 +13,7 @@ import javax.persistence.*;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class GeoCoordinateEntity  implements BaseEntity{
+public class GeoCoordinateEntity implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")

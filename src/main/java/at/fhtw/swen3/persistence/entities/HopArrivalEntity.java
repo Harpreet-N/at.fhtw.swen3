@@ -18,7 +18,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class HopArrivalEntity  implements BaseEntity{
+public class HopArrivalEntity implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
@@ -40,7 +40,7 @@ public class HopArrivalEntity  implements BaseEntity{
 
     @NotNull
     @OneToMany
-    @JoinColumn(name="fk_parcelEntries")
+    @JoinColumn(name = "fk_parcelEntries")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<ParcelEntity> parcel = new ArrayList<>();

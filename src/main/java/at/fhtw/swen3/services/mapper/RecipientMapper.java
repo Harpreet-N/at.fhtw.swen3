@@ -7,7 +7,8 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface RecipientMapper {
-    RecipientMapper INSTANCE = Mappers.getMapper( RecipientMapper.class );
+    RecipientMapper INSTANCE = Mappers.getMapper(RecipientMapper.class);
+
     Recipient entityToDto(RecipientEntity recipientEntity);
 
     RecipientEntity dtoToEntity(Recipient recipient);

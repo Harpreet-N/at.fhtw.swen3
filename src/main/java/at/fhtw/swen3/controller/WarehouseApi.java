@@ -40,36 +40,19 @@ public interface WarehouseApi {
     }
 
     /**
-     * GET /warehouse : Exports the hierarchy of Warehouse and Truck objects. 
+     * GET /warehouse : Exports the hierarchy of Warehouse and Truck objects.
      *
      * @return Successful response (status code 200)
-     *         or The operation failed due to an error. (status code 400)
-     *         or No hierarchy loaded yet. (status code 404)
+     * or The operation failed due to an error. (status code 400)
+     * or No hierarchy loaded yet. (status code 404)
      */
-    @Operation(
-        operationId = "exportWarehouses",
-        summary = "Exports the hierarchy of Warehouse and Truck objects. ",
-        tags = { "warehouse-management" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "Successful response", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Warehouse.class))
-            }),
-            @ApiResponse(responseCode = "400", description = "The operation failed due to an error.", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
-            }),
-            @ApiResponse(responseCode = "404", description = "No hierarchy loaded yet.")
-        }
-    )
-    @RequestMapping(
-        method = RequestMethod.GET,
-        value = "/warehouse",
-        produces = { "application/json" }
-    )
+    @Operation(operationId = "exportWarehouses", summary = "Exports the hierarchy of Warehouse and Truck objects. ", tags = {"warehouse-management"}, responses = {@ApiResponse(responseCode = "200", description = "Successful response", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Warehouse.class))}), @ApiResponse(responseCode = "400", description = "The operation failed due to an error.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))}), @ApiResponse(responseCode = "404", description = "No hierarchy loaded yet.")})
+    @RequestMapping(method = RequestMethod.GET, value = "/warehouse", produces = {"application/json"})
     default ResponseEntity<Warehouse> exportWarehouses(
-        
+
     ) throws BLWarehouseException {
         getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+            for (MediaType mediaType : MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "null";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
@@ -85,35 +68,16 @@ public interface WarehouseApi {
     /**
      * GET /warehouse/{code} : Get a certain warehouse or truck by code
      *
-     * @param code  (required)
+     * @param code (required)
      * @return Successful response (status code 200)
-     *         or The operation failed due to an error. (status code 400)
-     *         or No hop with the specified id could be found. (status code 404)
+     * or The operation failed due to an error. (status code 400)
+     * or No hop with the specified id could be found. (status code 404)
      */
-    @Operation(
-        operationId = "getWarehouse",
-        summary = "Get a certain warehouse or truck by code",
-        tags = { "warehouse-management" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "Successful response", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Hop.class))
-            }),
-            @ApiResponse(responseCode = "400", description = "The operation failed due to an error.", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
-            }),
-            @ApiResponse(responseCode = "404", description = "No hop with the specified id could be found.")
-        }
-    )
-    @RequestMapping(
-        method = RequestMethod.GET,
-        value = "/warehouse/{code}",
-        produces = { "application/json" }
-    )
-    default ResponseEntity<Hop> getWarehouse(
-        @Parameter(name = "code", description = "", required = true) @PathVariable("code") String code
-    ) throws BLWarehouseException {
+    @Operation(operationId = "getWarehouse", summary = "Get a certain warehouse or truck by code", tags = {"warehouse-management"}, responses = {@ApiResponse(responseCode = "200", description = "Successful response", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Hop.class))}), @ApiResponse(responseCode = "400", description = "The operation failed due to an error.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))}), @ApiResponse(responseCode = "404", description = "No hop with the specified id could be found.")})
+    @RequestMapping(method = RequestMethod.GET, value = "/warehouse/{code}", produces = {"application/json"})
+    default ResponseEntity<Hop> getWarehouse(@Parameter(name = "code", description = "", required = true) @PathVariable("code") String code) throws BLWarehouseException {
         getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+            for (MediaType mediaType : MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "{ \"code\" : \"code\", \"locationName\" : \"locationName\", \"processingDelayMins\" : 0, \"hopType\" : \"hopType\", \"description\" : \"description\", \"locationCoordinates\" : { \"lon\" : 1.4658129805029452, \"lat\" : 6.027456183070403 } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
@@ -127,32 +91,15 @@ public interface WarehouseApi {
 
 
     /**
-     * POST /warehouse : Imports a hierarchy of Warehouse and Truck objects. 
+     * POST /warehouse : Imports a hierarchy of Warehouse and Truck objects.
      *
-     * @param warehouse  (required)
+     * @param warehouse (required)
      * @return Successfully loaded. (status code 200)
-     *         or The operation failed due to an error. (status code 400)
+     * or The operation failed due to an error. (status code 400)
      */
-    @Operation(
-        operationId = "importWarehouses",
-        summary = "Imports a hierarchy of Warehouse and Truck objects. ",
-        tags = { "warehouse-management" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "Successfully loaded."),
-            @ApiResponse(responseCode = "400", description = "The operation failed due to an error.", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
-            })
-        }
-    )
-    @RequestMapping(
-        method = RequestMethod.POST,
-        value = "/warehouse",
-        produces = { "application/json" },
-        consumes = { "application/json" }
-    )
-    default ResponseEntity<Void> importWarehouses(
-        @Parameter(name = "Warehouse", description = "", required = true) @Valid @RequestBody Warehouse warehouse
-    ) throws BLWarehouseException {
+    @Operation(operationId = "importWarehouses", summary = "Imports a hierarchy of Warehouse and Truck objects. ", tags = {"warehouse-management"}, responses = {@ApiResponse(responseCode = "200", description = "Successfully loaded."), @ApiResponse(responseCode = "400", description = "The operation failed due to an error.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))})})
+    @RequestMapping(method = RequestMethod.POST, value = "/warehouse", produces = {"application/json"}, consumes = {"application/json"})
+    default ResponseEntity<Void> importWarehouses(@Parameter(name = "Warehouse", description = "", required = true) @Valid @RequestBody Warehouse warehouse) throws BLWarehouseException {
         return new ResponseEntity<>(HttpStatus.CREATED);
 
     }

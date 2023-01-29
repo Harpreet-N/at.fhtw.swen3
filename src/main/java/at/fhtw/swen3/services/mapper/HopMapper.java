@@ -7,7 +7,7 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(uses = {GeoCoordinateMapper.class})
 public interface HopMapper {
-    HopMapper INSTANCE = Mappers.getMapper( HopMapper.class );
+    HopMapper INSTANCE = Mappers.getMapper(HopMapper.class);
 
     Hop entityToDto(HopEntity hopEntity);
 

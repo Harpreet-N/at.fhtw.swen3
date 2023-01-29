@@ -40,15 +40,12 @@ public class ParcelServiceImpl implements ParcelService {
     public ParcelEntity reportParcelHop(String trackingId, String code) throws BLParcelException {
         ParcelEntity parcel = parcelRepository.findByTrackingId(trackingId);
         if (parcel != null) {
-
-            //validateFirstInFutureHops
             HopArrivalEntity hopArrival = parcel.getFutureHops().get(0);
             if (hopArrival == null || !code.equals(hopArrival.getCode())) {
                 log.error("reportParcelHop failed! Reason: No future hops found");
                 throw new BLParcelException("No future hops found");
             }
 
-            //hopToArrivalToVisited
             parcel.getFutureHops().remove(hopArrival);
             parcel.getVisitedHops().add(hopArrival);
 

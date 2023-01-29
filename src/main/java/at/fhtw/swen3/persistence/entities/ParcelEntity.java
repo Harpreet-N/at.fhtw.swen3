@@ -19,7 +19,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class ParcelEntity  implements BaseEntity{
+public class ParcelEntity implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
@@ -32,12 +32,12 @@ public class ParcelEntity  implements BaseEntity{
 
     @NotNull
     @OneToOne
-    @JoinColumn(name="fk_recipient")
+    @JoinColumn(name = "fk_recipient")
     private RecipientEntity recipient;
 
     @NotNull
     @OneToOne
-    @JoinColumn(name="fk_sender")
+    @JoinColumn(name = "fk_sender")
     private RecipientEntity sender;
 
     @Pattern(regexp = "^[A-Z0-9]{9}$")
