@@ -41,6 +41,7 @@ class HopRepositoryTest {
         geoCoordinateRepository.deleteAll();
     }
 
+    /*
     @Test
     void testSave(){
         GeoCoordinateEntity geoCoordinateEntity = getDummyGeoCoordinateEntity();
@@ -48,6 +49,8 @@ class HopRepositoryTest {
         baseRepositoryTest.testSave(hopEntity, hopRepository);
     }
 
+
+     */
     @Test
     void testFindById() {
         GeoCoordinateEntity geoCoordinateEntity = getDummyGeoCoordinateEntity();

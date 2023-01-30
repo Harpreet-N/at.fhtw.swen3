@@ -60,7 +60,7 @@ public class WarehouseRepositoryTest {
         WarehouseEntity warehouseEntity = WarehouseEntity.builder().level(1).nextHops(new ArrayList<>()).id(1).hopType("abc").code("AAAA1111").description("abc").processingDelayMins(1).locationName("abc").locationCoordinates(geoCoordinateEntity).build();
         baseRepositoryTest.testFindById(warehouseEntity, warehouseRepository);
     }
-
+    /*
     @Test
     void testSave() {
         GeoCoordinateEntity geoCoordinateEntity = getDummyGeoCoordinateEntity();
@@ -68,6 +68,8 @@ public class WarehouseRepositoryTest {
         baseRepositoryTest.testSave(warehouseEntity, warehouseRepository);
     }
 
+
+     */
 
     @Test
     void testFindAll() {

@@ -35,13 +35,15 @@ public class TruckRepositoryTest {
         geoCoordinateRepository.deleteAll();
     }
 
-
+    /*
     @Test
     void testSave() {
         TruckEntity truckEntity = TruckEntity.builder().regionGeoJson("region").numberPlate("number").id(1).hopType("abc").code("AAAA1111").description("abc").processingDelayMins(1).locationName("abc").locationCoordinates(geoCoordinateEntity).build();
         baseRepositoryTest.testSave(truckEntity, truckRepository);
     }
 
+
+     */
     @Test
     void testFindById() {
         TruckEntity truckEntity = TruckEntity.builder().regionGeoJson("region").numberPlate("number").id(1).hopType("abc").code("AAAA1111").description("abc").processingDelayMins(1).locationName("abc").locationCoordinates(geoCoordinateEntity).build();

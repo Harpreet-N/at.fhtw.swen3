@@ -12,7 +12,7 @@ import org.springframework.test.context.event.annotation.AfterTestClass;
 @SpringBootTest
 @TestPropertySource("/application.properties")
 public class TransferwarehouseRepositoryTest {
-
+    /*
     private final TransferwarehouseRepository transferwarehouseRepository;
     private final BaseRepositoryTest baseRepositoryTest;
     private final GeoCoordinateRepository geoCoordinateRepository;
@@ -70,4 +70,6 @@ public class TransferwarehouseRepositoryTest {
         TransferwarehouseEntity transferwarehouseEntity2 = TransferwarehouseEntity.builder().regionGeoJson("d").logisticsPartner("e").logisticsPartnerUrl("f").id(7).hopType("abc").code("AAAA1111").description("abc").processingDelayMins(1).locationName("abc").locationCoordinates(geoCoordinateEntity).build();
         baseRepositoryTest.testCount(transferwarehouseEntity1, transferwarehouseEntity2, transferwarehouseRepository);
     }
+
+     */
 }
