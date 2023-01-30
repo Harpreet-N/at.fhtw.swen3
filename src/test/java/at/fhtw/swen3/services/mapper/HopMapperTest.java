@@ -30,13 +30,13 @@ public class HopMapperTest {
         assertEquals(hopDTO.getDescription(), hopEntity.getDescription());
         assertEquals(hopDTO.getProcessingDelayMins(), hopEntity.getProcessingDelayMins());
         assertEquals(hopDTO.getLocationName(), hopEntity.getLocationName());
-        assertEquals(hopDTO.getLocationCoordinates().getLat(), hopEntity.getLocationCoordinates().getLocation().getX());
-        assertEquals(hopDTO.getLocationCoordinates().getLon(), hopEntity.getLocationCoordinates().getLocation().getY());
+        assertEquals(hopDTO.getLocationCoordinates().getLat(), hopEntity.getLocationCoordinates().getLon());
+        assertEquals(hopDTO.getLocationCoordinates().getLon(), hopEntity.getLocationCoordinates().getLat());
     }
 
     @Test
     void mapHopEntityToDTO() {
-        HopEntity hopEntity = new HopEntity(1,"abc", "abc", "abc", 23, "abc", new GeoCoordinateEntity(1, getDummyPoint()), null);
+        HopEntity hopEntity = new HopEntity(1,"abc", "abc", "abc", 23, "abc", new GeoCoordinateEntity(1,1.3,2.0 ), null);
 
         Hop hopDTO = HopMapper.INSTANCE.entityToDto(hopEntity);
 
@@ -45,8 +45,8 @@ public class HopMapperTest {
         assertEquals(hopDTO.getDescription(), hopEntity.getDescription());
         assertEquals(hopDTO.getProcessingDelayMins(), hopEntity.getProcessingDelayMins());
         assertEquals(hopDTO.getLocationName(), hopEntity.getLocationName());
-        assertEquals(hopDTO.getLocationCoordinates().getLat(), hopEntity.getLocationCoordinates().getLocation().getX());
-        assertEquals(hopDTO.getLocationCoordinates().getLon(), hopEntity.getLocationCoordinates().getLocation().getY());
+        assertEquals(hopDTO.getLocationCoordinates().getLat(), hopEntity.getLocationCoordinates().getLat());
+        assertEquals(hopDTO.getLocationCoordinates().getLon(), hopEntity.getLocationCoordinates().getLon());
     }
 
     Point getDummyPoint() {

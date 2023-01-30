@@ -17,7 +17,7 @@ public class WarehouseNextHopsMapperTest {
         warehouseNextHopsDTO.traveltimeMins(27);
         warehouseNextHopsDTO.hop(new Hop());
 
-        WarehouseNextHopsEntity warehouseNextHopsEntity = WarehouseNextHopsMapper.INSTANCE.dtoToEntity(warehouseNextHopsDTO);
+        WarehouseNextHopsEntity warehouseNextHopsEntity = WarehouseNextHopsMapper.INSTANCE.dtoToEntity(warehouseNextHopsDTO, null);
 
         assertEquals(warehouseNextHopsDTO.getTraveltimeMins(), warehouseNextHopsEntity.getTraveltimeMins());
         assertEquals(warehouseNextHopsDTO.getHop().getHopType(), warehouseNextHopsEntity.getHop().getHopType());

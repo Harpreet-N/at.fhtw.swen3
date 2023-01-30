@@ -15,31 +15,8 @@ import java.util.Locale;
 public interface GeoCoordinateMapper {
     GeoCoordinateMapper INSTANCE = Mappers.getMapper(GeoCoordinateMapper.class);
 
-    @Mapping(target = "lat", source = "location", qualifiedByName = "xToLat")
-    @Mapping(target = "lon", source = "location", qualifiedByName = "yToLon")
+
+    GeoCoordinateEntity dtoToEntity(GeoCoordinate geoCoordinateDto);
+
     GeoCoordinate entityToDto(GeoCoordinateEntity geoCoordinateEntity);
-
-    @Mapping(target = "location", source = "geoCoordinate", qualifiedByName = "coordsToPoint")
-    GeoCoordinateEntity dtoToEntity(GeoCoordinate geoCoordinate);
-
-    @Named("coordsToPoint")
-    static Point coordsToPoint(GeoCoordinate geoCoordinate) {
-        try {
-            String wktPoint = String.format(Locale.US, "POINT(%f %f)", geoCoordinate.getLat(), geoCoordinate.getLon());
-            Point point = (Point) new WKTReader().read(wktPoint);
-            return point;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    @Named("xToLat")
-    static Double xToLat(Point location) {
-        return location.getX();
-    }
-
-    @Named("yToLon")
-    static Double yToLon(Point location) {
-        return location.getY();
-    }
 }

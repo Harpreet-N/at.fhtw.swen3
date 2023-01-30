@@ -48,10 +48,9 @@ public class WarehouseApiController implements WarehouseApi {
     @Override
     public ResponseEntity<Warehouse> exportWarehouses() throws BLWarehouseException {
         log.info("exportWarehouses called");
-        WarehouseEntity warehouseEntity = warehouseService.exportWarehouses();
-        Warehouse warehouse = warehouseMapper.entityToDto(warehouseEntity);
+        var warehouses = warehouseService.exportWarehouses();
         log.info("Warehouse hierarchy fetched");
-        return new ResponseEntity<>(warehouse, HttpStatus.OK);
+        return new ResponseEntity<>(warehouses, HttpStatus.OK);
     }
 
     @Override
@@ -63,7 +62,7 @@ public class WarehouseApiController implements WarehouseApi {
     }
 
     @Override
-    public ResponseEntity<Void> importWarehouses(@Parameter(name = "Warehouse", description = "", required = true) @Valid @RequestBody Warehouse warehouse) throws BLWarehouseException {
+    public ResponseEntity<Void> importWarehouses(Warehouse warehouse) throws BLWarehouseException {
         log.info("importWarehouses called");
         warehouseService.importWarehouses(warehouse);
         log.info("Warehouse hierarchy imported");

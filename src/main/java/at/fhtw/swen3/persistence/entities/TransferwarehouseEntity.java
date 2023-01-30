@@ -2,6 +2,7 @@ package at.fhtw.swen3.persistence.entities;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -21,6 +22,8 @@ public class TransferwarehouseEntity extends HopEntity implements BaseEntity {
     private int id;
 
     @Column
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String regionGeoJson;
 
     @Column

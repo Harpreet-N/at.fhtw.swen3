@@ -1,4 +1,4 @@
-package at.fhtw.swen3.services.mapper;
+package at.fhtw.swen3.services.mapper.impl;
 
 import at.fhtw.swen3.persistence.entities.HopEntity;
 import at.fhtw.swen3.persistence.entities.TransferwarehouseEntity;
@@ -8,6 +8,7 @@ import at.fhtw.swen3.services.dto.Hop;
 import at.fhtw.swen3.services.dto.Transferwarehouse;
 import at.fhtw.swen3.services.dto.Truck;
 import at.fhtw.swen3.services.dto.Warehouse;
+import at.fhtw.swen3.services.mapper.*;
 
 public class HopImpl implements HopMapper {
 

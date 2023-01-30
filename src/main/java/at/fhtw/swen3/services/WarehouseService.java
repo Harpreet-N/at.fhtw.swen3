@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface WarehouseService {
-    WarehouseEntity exportWarehouses() throws BLWarehouseException;
+    Warehouse exportWarehouses() throws BLWarehouseException;
 
     HopEntity getWarehouse(String code) throws BLWarehouseException;
 

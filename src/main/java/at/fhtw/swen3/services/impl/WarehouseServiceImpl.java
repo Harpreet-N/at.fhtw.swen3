@@ -29,21 +29,11 @@ public class WarehouseServiceImpl implements WarehouseService {
     private final GeoCoordinateRepository geoCoordinateRepository;
 
     @Override
-    public WarehouseEntity exportWarehouses() throws BLWarehouseException {
-        WarehouseEntity warehouseEntity;
-        try {
-            Optional<WarehouseEntity> optionalWarehouseEntity = warehouseRepository.findByLevel(0);
-            if (optionalWarehouseEntity.isPresent()) {
-                warehouseEntity = optionalWarehouseEntity.get();
-            } else {
-                throw new BLWarehouseException("Warehouse Hierarchy not found");
-            }
-        } catch (Exception e) {
-            log.error("exportWarehouse failed! Reason: {}", e.getMessage());
-            throw new BLWarehouseException("exportWarehouse failed");
-        }
+    public Warehouse exportWarehouses() throws BLWarehouseException {
+        var warehouseEntity = warehouseRepository.findByLevel(0);
+
         log.info("exportWarehouses successful");
-        return warehouseEntity;
+        return WarehouseMapper.INSTANCE.entityToDto(warehouseEntity.get());
     }
 
     @Override

@@ -13,13 +13,14 @@ import javax.persistence.*;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class GeoCoordinateEntity implements BaseEntity {
+public class GeoCoordinateEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     private int id;
 
+    private Double lat;
 
-    @Column
-    private Point location;
+    private Double lon;
+
 }

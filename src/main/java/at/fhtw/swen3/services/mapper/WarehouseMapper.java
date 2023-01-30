@@ -10,7 +10,7 @@ import org.mapstruct.factory.Mappers;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(uses = {WarehouseNextHopsMapper.class})
+@Mapper(uses = {GeoCoordinateMapper.class, HopMapper.class}, builder = @Builder(disableBuilder = true))
 public interface WarehouseMapper {
     WarehouseMapper INSTANCE = Mappers.getMapper(WarehouseMapper.class);
 

@@ -19,19 +19,19 @@ public class GeoCoordinateMapperTest {
 
         GeoCoordinateEntity geoCoordinateEntity = GeoCoordinateMapper.INSTANCE.dtoToEntity(geoCoordinateDTO);
 
-        assertEquals(geoCoordinateDTO.getLat(), geoCoordinateEntity.getLocation().getX());
-        assertEquals(geoCoordinateDTO.getLon(), geoCoordinateEntity.getLocation().getY());
+        assertEquals(geoCoordinateDTO.getLat(), geoCoordinateEntity.getLat());
+        assertEquals(geoCoordinateDTO.getLon(), geoCoordinateEntity.getLon());
     }
 
     @Test
     void mapGeoCoordinateEntityToDTO() {
         Point point = getDummyPoint();
-        GeoCoordinateEntity geoCoordinateEntity = new GeoCoordinateEntity(1, point);
+        GeoCoordinateEntity geoCoordinateEntity = new GeoCoordinateEntity(1, 1.0, 2.0);
 
         GeoCoordinate geoCoordinateDTO = GeoCoordinateMapper.INSTANCE.entityToDto(geoCoordinateEntity);
 
-        assertEquals(geoCoordinateDTO.getLat(), geoCoordinateEntity.getLocation().getX());
-        assertEquals(geoCoordinateDTO.getLon(), geoCoordinateEntity.getLocation().getY());
+        assertEquals(geoCoordinateDTO.getLat(), geoCoordinateEntity.getLat());
+        assertEquals(geoCoordinateDTO.getLon(), geoCoordinateEntity.getLon());
     }
 
     Point getDummyPoint() {

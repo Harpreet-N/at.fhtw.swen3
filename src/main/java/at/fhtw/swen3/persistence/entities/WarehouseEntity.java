@@ -25,9 +25,9 @@ public class WarehouseEntity extends HopEntity implements BaseEntity {
     @Column
     private Integer level;
 
-    @NotNull
-    @OneToMany
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
+    @Singular
+    @OneToMany(targetEntity = WarehouseNextHopsEntity.class, mappedBy = "warehouse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<WarehouseNextHopsEntity> nextHops = new ArrayList<>();
 }
